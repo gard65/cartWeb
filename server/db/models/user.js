@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.Documentation, { foreignKey: 'userId' });
       this.hasOne(models.License, { foreignKey: 'userId' });
       this.hasOne(models.Avatar, { foreignKey: 'userId' });
+      this.hasOne(models.Token, { foreignKey: 'userId' });
       this.hasMany(models.Chat, { foreignKey: 'userId' });
       this.belongsToMany(models.Route, {
         through: 'UserRoute',
@@ -24,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     name: DataTypes.STRING,
+    email: DataTypes.STRING,
     telephone: DataTypes.STRING,
     password: DataTypes.STRING,
     gender: DataTypes.STRING,
