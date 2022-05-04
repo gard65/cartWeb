@@ -16,7 +16,8 @@ class UserService {
     const userDto = {
       email: user.email, mame: user.name, id: user.id,
     };
-    const tokens = tokenService.generateToken({ ...userDto });
+    const tokens = await tokenService.generateToken({ ...userDto });
+    console.log(tokens);
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }
