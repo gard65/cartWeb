@@ -1,6 +1,7 @@
 import './App.css';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
+import {THUNK_checkAuth} from "./redux/thunk/thunkAuth";
 import Header from './components/Header/Header'
 import SignUp from './components/InUP/SignUp/SignUp';
 import Main from './components/Main/Main';
@@ -11,8 +12,28 @@ import Exit from './components/PersonalInfo/Exit';
 import AddItinerary from "./components/AddItinerary/AddItinerary"
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState();
+  
+  const verify = () => {
+      if (THUNK_checkAuth()) {
+          setLoggedIn(true);
+          setUser(THUNK_checkAuth.user);
+          console.log('logged in');
+          return true;
+      } else {
+          console.log('not logged in');
+          return false;
+      }
+  }
+
+  useEffect(() => {
+      verify()
+  }, [loggedIn]);
+
   return (
     <div className="App">
+
       <Header />
       <div className="container">
         <Routes>
@@ -25,6 +46,7 @@ function App() {
           <Route path="/" element={<Exit />} />
         </Routes>
       </div>
+
     </div>
   );
 }
