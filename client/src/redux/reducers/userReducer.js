@@ -1,4 +1,4 @@
-import {initState} from "../initState";
+import {initState} from "../init/initState";
 import {GET_USER} from "../types/User.types";
 
 export const userReducer = (state = initState, action) => {
