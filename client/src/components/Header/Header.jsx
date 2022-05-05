@@ -1,9 +1,10 @@
 import './header.css'
-import {
-    Link
-} from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from "react-router-dom";
 
 function Header() {
+  const user = useSelector(state => state.user)
+
   return (
     <header className="head text-white">
       <h3>
@@ -20,14 +21,21 @@ function Header() {
               aria-controls="navbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
-            >
+              >
               <span className="navbar-toggler-icon"></span>
             </button>
             <div
               className="collapse navbar-collapse d-flex justify-content-center"
               id="navbarNav"
-            >
+              >
               <ul className="navbar-nav">
+                
+               
+              { user
+                ?
+              
+                
+              <>
                 <li className="nav-item">
                   <Link to="/signUp" className="nav-link fs-4">
                     Регистрация
@@ -38,6 +46,10 @@ function Header() {
                     Войти
                   </Link>
                 </li>
+              </>
+                 
+                :
+                <>
                 <li className="nav-item">
                   <Link to="/personalAcc" className="nav-link fs-4">
                     Личный кабинет
@@ -48,23 +60,32 @@ function Header() {
                     Построить маршрут
                   </Link>
                 </li>
+
                 <li className="nav-item">
                   <Link to="/history" className="nav-link fs-4">
                     История поездок
                   </Link>
                 </li>
+
                 <li className="nav-item">
-                  <Link to="/" className="nav-link fs-4">
+                  <Link to="/logout" className="nav-link fs-4">
                     Выход
                   </Link>
                 </li>
+
                 <li className="nav-item">
                   <Link to="/home" className="nav-link fs-4">
                     Карта
                   </Link>
                 </li>
+                </>
+              
+              
+             
+              }
               </ul>
             </div>
+
           </div>
         </nav>
       </h3>

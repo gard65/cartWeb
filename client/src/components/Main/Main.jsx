@@ -1,6 +1,6 @@
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 import React, { useEffect } from "react";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from "react-redux";
 import { getMapStateFromDb } from "../../redux/thuncs/asyncAction";
 import { Link } from "react-router-dom";
@@ -20,7 +20,7 @@ function Main() {
           <div className="d-flex justify-content-center mt-5">
             <Map defaultState={mapState}>
               {coordinates.map((coordinate) => (
-                <Placemark key={uuid()} geometry={coordinate} />
+                <Placemark key={uuidv4()} geometry={coordinate} />
               ))}
             </Map>
           </div>
