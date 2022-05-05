@@ -30,6 +30,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
 
   return (
     <div>
+
       <form onSubmit={handleSubmit}>
 
   <div className="mb-3">
@@ -112,6 +113,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
 </div>
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>
+
     </div>
   );
  }
