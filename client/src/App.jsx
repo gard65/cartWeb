@@ -13,6 +13,7 @@ import Exit from './components/PersonalInfo/Exit';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState();
+  
   const verify = () => {
       if (THUNK_checkAuth()) {
           setLoggedIn(true);
@@ -40,7 +41,7 @@ function App() {
             <Route path="/signIn" element={<SignIn/>} />
             <Route path="/personalAcc" element={<PersonalAcc/>} />
             <Route path="/history" element={<History/>} />
-            <Route path="/" element={<Exit/>} />
+            <Route path="/logout" element={<Exit/>} />
           </Routes> 
          </div>
       

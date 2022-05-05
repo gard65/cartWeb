@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import { Navigate, NavigationType, useNavigate } from 'react-router-dom';
 import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
 
  function SignUp() {
@@ -13,12 +14,19 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
     const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
     const user = useSelector(state => state);
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(THUNK_ACTION_REGISTER({name, email, telephone, age, gender, password}));
-        console.log(user)
+        navigate('/personalAcc')
     }
+
+  //  function handleOptionChange (changeEvent) {
+  //     setState({
+  //       selectedOption: changeEvent.target.value
+  //     });
+  //   }
 
   return (
     <div>
@@ -76,10 +84,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
       value={password}
       />
   </div>
-  {/* <div className="mb-3">
-    <label for="exampleInputPassword2" className="form-label">Repeat Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword2"/>
-  </div> */}
+
 
   <div className="form-check">
   <input className="form-check-input" 

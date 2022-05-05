@@ -10,7 +10,7 @@ export default class AuthService {
 
     static async login(userData) {
         const {email, password} = userData;
-        const response = await $api.post("/login", {email, password});
+        const response = await $api.post("/signIn", {email, password});
         localStorage.setItem("token", response.data.accessToken);
         return response;
     }
