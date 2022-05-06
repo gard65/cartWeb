@@ -3,18 +3,16 @@ const userService = require('../services/userService');
 // const ApiError = require('../exceptions/apiError');
 
 class UserController {
+
   async registration(req, res, next) {
     try {
-      const errors = validationResult(req);
-      // if (!errors.isEmpty()) {
-      //   return next(ApiError.badRequest('Validation error', errors.array()));
-      // }
-
-      const {
-        name, email, telephone, age, gender, password,
+      // const errors = validationResult(req);
+      
+      const  {
+        name, email, telephone, password, gender, age,
       } = req.body;
       console.log(req.body);
-      const userData = await userService.registration(email, password, name, telephone, age, gender);
+      const userData = await userService.registration( name, email, telephone, password, gender, age);
 
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,

@@ -6,7 +6,7 @@ import axios from "axios";
 export const THUNK_ACTION_LOGIN = (userData) => async (dispatch) => {
     try {
         const response = await AuthService.login(userData);
-        dispatch(getUser(response.data.userFront));
+        dispatch(getUser(response.data.userDto));
     } catch (error) {
         console.log(error);
     }
@@ -19,7 +19,7 @@ export const THUNK_checkAuth = () => async (dispatch) => {
             withCredentials: true,
         })
         localStorage.setItem('token', response.data.accessToken)
-        dispatch(getUser({user: response.data.userFront}))
+        dispatch(getUser({user: response.data.userDto}))
         dispatch(isAuth());
     } catch (e) {
         console.log(e)

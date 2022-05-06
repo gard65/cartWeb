@@ -1,4 +1,4 @@
-import {GET_USER, IS_AUTH, IS_NOT_AUTH} from "../types/User.types";
+import {GET_USER, IS_AUTH, IS_NOT_AUTH, UNSET_USER} from "../types/User.types";
 
 export const getUser = (user) => {
     return {
@@ -6,6 +6,7 @@ export const getUser = (user) => {
         payload: user
     }
 };
+export const unsetUser = () => ({type: UNSET_USER})
 export const isAuth = () => {
     return {
         type: IS_AUTH

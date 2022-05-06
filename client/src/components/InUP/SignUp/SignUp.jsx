@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as React from 'react';
 import {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
@@ -13,14 +14,13 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
-    const user = useSelector(state => state);
-    const navigate = useNavigate()
+  
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(THUNK_ACTION_REGISTER({name, email, telephone, age, gender, password}));
-        navigate('/personalAcc')
-    }
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      
+      dispatch(THUNK_ACTION_REGISTER({name, email, telephone, password, gender, age}));
+  }
 
   //  function handleOptionChange (changeEvent) {
   //     setState({

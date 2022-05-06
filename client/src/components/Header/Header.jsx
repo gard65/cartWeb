@@ -35,20 +35,9 @@ function Header() {
                 ?
               
                 
-              <>
-                <li className="nav-item">
-                  <Link to="/signUp" className="nav-link fs-4">
-                    Регистрация
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/signIn" className="nav-link fs-4">
-                    Войти
-                  </Link>
-                </li>
-              </>
+              
                  
-                :
+                
                 <>
                 <li className="nav-item">
                   <Link to="/personalAcc" className="nav-link fs-4">
@@ -79,8 +68,19 @@ function Header() {
                   </Link>
                 </li>
                 </>
-              
-              
+              :
+              <>
+                <li className="nav-item">
+                  <Link to="/signUp" className="nav-link fs-4">
+                    Регистрация
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/signIn" className="nav-link fs-4">
+                    Войти
+                  </Link>
+                </li>
+              </>
              
               }
               </ul>
