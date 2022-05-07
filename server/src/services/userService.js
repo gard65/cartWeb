@@ -54,7 +54,7 @@ class UserService {
       throw ApiError.UnauthorizedError();
     }
     const user = await User.findOne({ where: { id: userData.id } });
-    const userDto = { email: user.email, login: user.login, id: user.id };
+    const userDto = { email: user.email, id: user.id };
     const tokens = tokenService.generateToken({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };

@@ -3,4 +3,5 @@ export const initState = {
   coordinates: [],
   itinerary: {},
   user: null,
+  isAuth: false
 };

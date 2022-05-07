@@ -1,9 +1,9 @@
-import axios from 'axios';
+
 import * as React from 'react';
 import {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import { Navigate, NavigationType, useNavigate } from 'react-router-dom';
-import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
 
  function SignUp() {
 
@@ -15,23 +15,25 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
     const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
   
+    const navigate = useNavigate()
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      
-      dispatch(THUNK_ACTION_REGISTER({name, email, telephone, password, gender, age}));
+    const nameHandler = (e) => setName(e.target.value)
+    const emailHandler = (e) => setEmail(e.target.value)
+    const telephoneHandler = (e) => setTelephone(e.target.value)
+    const ageHandler = (e) => setAge(e.target.value)
+    const genderHandler = (e) => setGender(e.target.value)
+    const passwordHandler = (e) => setPassword(e.target.value)
+
+    const submitHandler = (e) => {
+      e.preventDefault()
+      dispatch(THUNK_register({name, email, telephone, age, gender, password}))
+      navigate('/personalAcc')
   }
-
-  //  function handleOptionChange (changeEvent) {
-  //     setState({
-  //       selectedOption: changeEvent.target.value
-  //     });
-  //   }
 
   return (
     <div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitHandler}>
 
   <div className="mb-3">
     <label htmlFor="exampleInputName1" className="form-label">Name</label>
@@ -39,7 +41,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
     className="form-control"
       id="exampleInputName1" 
       aria-describedby="nameHelp" 
-      onChange={(e) => setName(e.target.value)}
+      onChange={nameHandler}
       value={name}/>
     </div>
 
@@ -49,7 +51,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
      className="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
-      onChange={(e) => setEmail(e.target.value)}
+      onChange={emailHandler}
       value = {email}/>
 
   </div>
@@ -60,7 +62,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
     className="form-control" 
     id="exampleInputNumber1"
     aria-describedby="numberHelp"
-    onChange={(e) => setTelephone(e.target.value)}
+    onChange={telephoneHandler}
     value = {telephone}
     />
   </div>
@@ -71,7 +73,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
     className="form-control" 
     id="exampleInputAge1"
     aria-describedby="ageHelp"
-    onChange={(e) => setAge(e.target.value)}
+    onChange={ageHandler}
     value = {age}
     />
   </div>
@@ -81,7 +83,7 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
     <input type="password"
      className="form-control"
       id="exampleInputPassword1"
-      onChange={(e) => setPassword(e.target.value)}
+      onChange={passwordHandler}
       value={password}
       />
   </div>
@@ -92,10 +94,10 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
       type="radio"
       name="flexRadioDefault" 
       id="flexRadioDefault1"
-      onChange={(e) => setGender(e.target.value)}
+      onChange={genderHandler}
       value={gender}
    />
-  <label className="form-check-label" for="flexRadioDefault1">
+  <label className="form-check-label" htmlFor="flexRadioDefault1">
    Man
   </label>
 </div>
@@ -104,10 +106,10 @@ import {THUNK_ACTION_REGISTER} from "../../../redux/thunk/thunkRegistration";
       type="radio"
       name="flexRadioDefault"
       id="flexRadioDefault2"
-      onChange={(e) => setGender(e.target.value)}
+      onChange={genderHandler}
       value={gender}
    />
-  <label className="form-check-label" for="flexRadioDefault2">
+  <label className="form-check-label" htmlFor="flexRadioDefault2">
    Woman
   </label>
 </div>

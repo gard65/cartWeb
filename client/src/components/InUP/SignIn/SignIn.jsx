@@ -1,31 +1,38 @@
 import React, { useState } from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {THUNK_ACTION_LOGIN} from "../../../redux/thunk/thunkAuth";
+import {useDispatch} from "react-redux";
+import {THUNK_login } from "../../../redux/thunk/thunkAuth";
+// import $api from "../../../http";
+import {useNavigate} from "react-router-dom";
 
 function SignIn() {
 
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const user = useSelector(state => state.user);
+  const dispatch = useDispatch()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(THUNK_ACTION_LOGIN({email, password}));
-    
-}
+
+    const emailHandler = (e) => setEmail(e.target.value)
+    const passwordHandler = (e) => setPassword(e.target.value)
+
+
+ const submitHandler = async (e) => {
+        e.preventDefault()
+        await dispatch(THUNK_login({email, password}))
+        navigate('/personalAcc')
+    }
 
   return (
 
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitHandler}>
       <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
     <input type="email"
      className="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
-      onChange={(e) => setEmail(e.target.value)}
+      onChange={emailHandler}
       value = {email}/>
 
   </div>
@@ -35,11 +42,11 @@ function SignIn() {
     <input type="password"
      className="form-control"
       id="exampleInputPassword1"
-      onChange={(e) => setPassword(e.target.value)}
+      onChange={passwordHandler}
       value={password}
       />
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" className="btn btn-primary">Submit</button>
 </form>
     </div>
 

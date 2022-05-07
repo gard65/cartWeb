@@ -1,4 +1,4 @@
-import $api from "../../http/index.js";
+import $api from "../../http";
 
 export default class AuthService {
     static async registration(userData) {
