@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Exit(props) {
+function Home(props) {
   return (
     <div>
-      EXIT
+      
     </div>
   );
 }
 
-export default Exit;
+export default Home;

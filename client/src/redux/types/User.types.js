@@ -1,3 +1,8 @@
-export const GET_USER = 'GET_USER'
+export const SET_USER = 'SET_USER'
+export const UNSET_USER = 'UNSET_USER'
 export const IS_AUTH = 'IS_AUTH'
 export const IS_NOT_AUTH = 'IS_NOT_AUTH'
+
+export const SET_PASSPORT_CONFIRM = 'SET_PASSPORT_CONFIRM'
+export const SET_AVTONUM_CONFIRM = 'SET_AVTONUM_CONFIRM'
+export const SET_DRIVER_LICENSE_CONFIRM = 'SET_DRIVER_LICENSE_CONFIRM'

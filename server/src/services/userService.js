@@ -4,8 +4,10 @@ const tokenService = require('./tokenService');
 const { User } = require('../../db/models');
 
 class UserService {
-  async registration(email, password, name, telephone, age, gender) {
+
+  async registration(name, email, telephone, password, gender, age) {
     const candidate = await User.findOne({ where: { email } });
+    
     if (candidate) {
       throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`);
     }
@@ -14,7 +16,7 @@ class UserService {
       name, email, telephone, age, gender, password: hashPassword,
     });
     const userDto = {
-      email: user.email, mame: user.name, id: user.id,
+     name: user.name, email: user.email, id: user.id,
     };
     const tokens = await tokenService.generateToken({ ...userDto });
     console.log(tokens);
@@ -31,7 +33,7 @@ class UserService {
     if (!isCorrectPass) {
       throw ApiError.BadRequest('Неверный пароль');
     }
-    const userDto = { email: user.email, login: user.login, id: user.id };
+    const userDto = { email: user.email, id: user.id };
     const tokens = tokenService.generateToken({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
@@ -52,7 +54,7 @@ class UserService {
       throw ApiError.UnauthorizedError();
     }
     const user = await User.findOne({ where: { id: userData.id } });
-    const userDto = { email: user.email, login: user.login, id: user.id };
+    const userDto = { email: user.email, id: user.id };
     const tokens = tokenService.generateToken({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };

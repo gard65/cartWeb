@@ -1,20 +1,23 @@
-const { validationResult } = require('express-validator');
+const {
+  License, Documentation, Driver, User,
+} = require('../../db/models');
+
 const userService = require('../services/userService');
-// const ApiError = require('../exceptions/apiError');
 
 class UserController {
   async registration(req, res, next) {
     try {
-      const errors = validationResult(req);
-      // if (!errors.isEmpty()) {
-      //   return next(ApiError.badRequest('Validation error', errors.array()));
-      // }
-
       const {
-        name, email, telephone, age, gender, password,
+        name, email, telephone, password, gender, age,
       } = req.body;
-      console.log(req.body);
-      const userData = await userService.registration(email, password, name, telephone, age, gender);
+      const userData = await userService.registration(
+        name,
+        email,
+        telephone,
+        password,
+        gender,
+        age,
+      );
 
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -44,9 +47,41 @@ class UserController {
     }
   }
 
+  async editUserInfo(req, res, next) {
+    try {
+      const {
+        name,
+        telephone,
+        age,
+        gender,
+        passport,
+        number,
+        avto,
+        userId,
+      } = req.body;
+      await License.upsert({ userId, number });
+      await Documentation.upsert({ userId, passport });
+      await Driver.upsert({ userId, avto });
+      await User.upsert({
+        userId,
+        name,
+        telephone,
+        age,
+        gender,
+      });
+      const numberFromDb = License.findOne({ where: { id: userId } });
+      const passportFromDb = Documentation.findOne({ where: { id: userId } });
+      const avtoFromDb = Driver.findOne({ where: { id: userId } });
+      res.json({ passport: !!passportFromDb, avtoNum: !!avtoFromDb, driverLicense: !!numberFromDb });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async logout(req, res, next) {
     try {
       const { refreshToken } = req.cookies;
+
       const token = await userService.logout(refreshToken);
       res.clearCookie('refreshToken');
       res.json(token);
@@ -63,7 +98,7 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
       });
-      return res.json(userData);
+      return await res.json(userData);
     } catch (e) {
       next(e);
     }
