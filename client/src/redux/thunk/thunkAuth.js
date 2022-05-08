@@ -6,15 +6,15 @@ import axios from "axios";
 
 export const THUNK_logout = () => async (dispatch) => {
   try {
-      dispatch(ACTION_setLoader())
+      // dispatch(ACTION_setLoader())
       await AuthService.logout()
       dispatch(ACTION_unsetUser())
       dispatch(ACTION_isNotAuth())
-      dispatch(ACTION_unSetLoader())
+      // dispatch(ACTION_unSetLoader())
   } catch (e) {
       console.log(e)
   } finally {
-      dispatch(ACTION_unSetLoader())
+      // dispatch(ACTION_unSetLoader())
   }
 }
 
@@ -22,7 +22,7 @@ export const THUNK_login = (userData) => async (dispatch) => {
   try {
       dispatch(ACTION_setLoader())
       const response = await AuthService.login(userData)
-      dispatch(ACTION_setUser({user: response.data.user}))
+      dispatch(ACTION_setUser({...response.data.user}))
       dispatch(ACTION_isAuth())
       // dispatch(THUNK_getPlayerFromDb(response.data.user.id))
       dispatch(ACTION_unSetLoader())

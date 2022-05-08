@@ -47,7 +47,7 @@ function App() {
       <Header />
       <div className="container">
         <Routes>
-          <Route path="/main" element={<Main />} />
+          <Route path="/home" element={<Main />} />
           <Route path="/registration" element={<SignUp />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/route" element={<AddItinerary />} />

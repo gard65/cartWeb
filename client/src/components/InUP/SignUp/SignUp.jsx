@@ -8,25 +8,25 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
  function SignUp() {
 
     const dispatch = useDispatch();
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [telephone, setTelephone] = useState('');
-    const [age, setAge] = useState('');
-    const [gender, setGender] = useState('');
+    // const [name, setName] = useState('');
+    // const [telephone, setTelephone] = useState('');
+    // const [age, setAge] = useState('');
+    // const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
   
     const navigate = useNavigate()
 
-    const nameHandler = (e) => setName(e.target.value)
     const emailHandler = (e) => setEmail(e.target.value)
-    const telephoneHandler = (e) => setTelephone(e.target.value)
-    const ageHandler = (e) => setAge(e.target.value)
-    const genderHandler = (e) => setGender(e.target.value)
+    // const nameHandler = (e) => setName(e.target.value)
+    // const telephoneHandler = (e) => setTelephone(e.target.value)
+    // const ageHandler = (e) => setAge(e.target.value)
+    // const genderHandler = (e) => setGender(e.target.value)
     const passwordHandler = (e) => setPassword(e.target.value)
 
     const submitHandler = (e) => {
       e.preventDefault()
-      dispatch(THUNK_register({name, email, telephone, age, gender, password}))
+      dispatch(THUNK_register({email,password}))
       navigate('/personalAcc')
   }
 
@@ -35,7 +35,7 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
 
       <form onSubmit={submitHandler}>
 
-  <div className="mb-3">
+  {/* <div className="mb-3">
     <label htmlFor="exampleInputName1" className="form-label">Name</label>
     <input type="text" 
     className="form-control"
@@ -43,7 +43,7 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
       aria-describedby="nameHelp" 
       onChange={nameHandler}
       value={name}/>
-    </div>
+    </div> */}
 
       <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -55,7 +55,7 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
       value = {email}/>
 
   </div>
-
+{/* 
   <div className="mb-3">
     <label htmlFor="exampleInputNumber1" className="form-label">Number</label>
     <input type="text" 
@@ -76,7 +76,7 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
     onChange={ageHandler}
     value = {age}
     />
-  </div>
+  </div> */}
 
   <div className="mb-3">
     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
@@ -88,7 +88,7 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
       />
   </div>
 
-
+{/* 
   <div className="form-check">
   <input className="form-check-input" 
       type="radio"
@@ -111,8 +111,8 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
    />
   <label className="form-check-label" htmlFor="flexRadioDefault2">
    Woman
-  </label>
-</div>
+  </label> */}
+{/* </div> */}
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>
 

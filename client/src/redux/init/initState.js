@@ -3,5 +3,8 @@ export const initState = {
   coordinates: [],
   itinerary: {},
   user: null,
-  isAuth: false
+  isAuth: false,
+  passportConfirm: false,
+  avtoNumConfirm: false,
+  driverLicenseConfirm: false
 };
