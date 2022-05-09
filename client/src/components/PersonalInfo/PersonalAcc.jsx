@@ -2,11 +2,19 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+
+import { THUNK_editUserInfo } from '../../redux/thunk/thunkUserInfo'
+import Avatar from "./Avatar/Avatar";
+const divStile = {maxWidth:'700px',
+height:'40vh'
+}
+
 import {
   THUNK_editUserInfo,
   THUNK_getUserInfo,
 } from "../../redux/thunk/thunkUserInfo";
 const divStile = { maxWidth: "700px", height: "40vh" };
+
 function PersonalAcc(props) {
   const user = useSelector((state) => state.user);
 
@@ -18,6 +26,25 @@ function PersonalAcc(props) {
   const [number, setNumber] = useState(user?.number);
   const [avto, setAvto] = useState(user?.avto);
 
+
+    const submitHandler = (e) => {
+      e.preventDefault()
+      dispatch(THUNK_editUserInfo({name, telephone, age, gender, passport, number, avto, userId}))
+     
+    }
+  return (
+    <>
+     <Card style={{ width: '18rem' }}>
+  <Avatar />
+  <Card.Body>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Text>
+      Some 
+    </Card.Text>
+  </Card.Body>
+  <ListGroup className="list-group-flush">
+      <form onSubmit={submitHandler}>
+
   useEffect(() => {
     setName(user?.name);
     setTelephone(user?.telephone);
@@ -27,6 +54,7 @@ function PersonalAcc(props) {
     setNumber(user?.number);
     setAvto(user?.avto);
   }, [user]);
+
 
   const dispatch = useDispatch();
 
