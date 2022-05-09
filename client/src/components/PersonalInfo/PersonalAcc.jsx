@@ -3,9 +3,10 @@ import {useState} from 'react';
 import {Card, ListGroup, ListGroupItem} from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux";
 import { THUNK_editUserInfo } from '../../redux/thunk/thunkUserInfo'
-const divStile = {maxWidth:'700px',
-height:'40vh'
-}
+import Avatar from "./Avatar/Avatar";
+// const divStile = {maxWidth:'700px',
+// height:'40vh'
+// }
 function PersonalAcc(props) {
   const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
@@ -34,12 +35,11 @@ function PersonalAcc(props) {
   return (
     <>
      <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+  <Avatar />
   <Card.Body>
     <Card.Title>Card Title</Card.Title>
     <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
+      Some 
     </Card.Text>
   </Card.Body>
   <ListGroup className="list-group-flush">
