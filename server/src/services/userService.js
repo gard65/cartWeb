@@ -4,10 +4,9 @@ const tokenService = require('./tokenService');
 const { User } = require('../../db/models');
 
 class UserService {
-
   async registration(name, email, telephone, password, gender, age) {
     const candidate = await User.findOne({ where: { email } });
-    
+
     if (candidate) {
       throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`);
     }
@@ -16,7 +15,7 @@ class UserService {
       name, email, telephone, age, gender, password: hashPassword,
     });
     const userDto = {
-     name: user.name, email: user.email, id: user.id,
+      email: user.email, id: user.id,
     };
     const tokens = await tokenService.generateToken({ ...userDto });
     console.log(tokens);
@@ -26,6 +25,7 @@ class UserService {
 
   async login(email, password) {
     const user = await User.findOne({ where: { email } });
+
     if (!user) {
       throw ApiError.BadRequest('Пользователь с таким email не найден');
     }
@@ -34,7 +34,9 @@ class UserService {
       throw ApiError.BadRequest('Неверный пароль');
     }
     const userDto = { email: user.email, id: user.id };
-    const tokens = tokenService.generateToken({ ...userDto });
+
+    const tokens = await tokenService.generateToken({ ...userDto });
+
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }

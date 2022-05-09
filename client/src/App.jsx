@@ -20,8 +20,8 @@ function App() {
   console.log(isUser, "isUser")
 
   useEffect(() => {
-    (localStorage.getItem('token') !== false) && dispatch(THUNK_checkAuth())
-}, [dispatch]);
+    (localStorage.getItem('token')) && dispatch(THUNK_checkAuth())
+}, []);
 
   // if (isUser) {   
   //   return (
