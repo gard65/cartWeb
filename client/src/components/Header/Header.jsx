@@ -12,15 +12,14 @@ function Header() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
-  const logoHandler = () => navigate('/')
+
   const logoutHandler = () => {
     dispatch(THUNK_logout())
-    navigate('/logout')
+    navigate('/login')
   }
   
 
-  const loginHandler = () => dispatch(THUNK_login())
-  const registrHandler = () => dispatch(THUNK_register())
+ 
 
 
   return (
@@ -61,18 +60,18 @@ function Header() {
                   <Link to="/home" className="nav-link fs-4" eventKey="link-4">Карта</Link>
                 </Nav.Item>
                   <Nav.Item>
-                    <Link  to="/logout" onClick={logoutHandler} className="nav-link fs-4"eventKey="link-7">
+                   <button onClick={logoutHandler} className="nav-link fs-4"eventKey="link-7">
                       Выход
-                    </Link>
+                 </button>
                   </Nav.Item>
                 </>
               :
               <>
                 <Nav.Item>
-                  <Link to="/registration" onClick={registrHandler} className="nav-link fs-4" eventKey="link-5">Регистрация</Link>
+                  <Link to="/registration" className="nav-link fs-4" eventKey="link-5">Регистрация</Link>
                 </Nav.Item>
                   <Nav.Item>
-                    <Link to="/login" onClick={loginHandler} className="nav-link fs-4" eventKey="link-6">Логин</Link>
+                    <Link to="/login"  className="nav-link fs-4" eventKey="link-6">Логин</Link>
                  </Nav.Item>
 
               </>
