@@ -5,6 +5,7 @@ import { THUNK_logout} from '../../redux/thunk/thunkAuth'
 import { THUNK_login} from '../../redux/thunk/thunkAuth'
 import { THUNK_register} from '../../redux/thunk/thunkRegistration'
 import { useNavigate } from 'react-router-dom'
+import { Nav} from 'react-bootstrap'
 
 
 function Header() {
@@ -23,29 +24,14 @@ function Header() {
 
 
   return (
-    <header className="head text-white">
-      <h3>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-success bg-gradient">
-          <div className="container-fluid d-flex">
-            <Link to="/" onClick={logoHandler} className="navbar-brand">
+
+      
+       
+         
+            <Nav justify variant="tabs" className="navbar navbar-expand-lg navbar-dark bg-success bg-gradient " defaultActiveKey="/">
               Попутка
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-              className="collapse navbar-collapse d-flex justify-content-center"
-              id="navbarNav"
-              >
-              <ul className="navbar-nav">
+          
+            
                 
                
               { user
@@ -56,57 +42,46 @@ function Header() {
                  
                 
                 <>
-                <li className="nav-item">
-                  <Link to="/personalAcc" className="nav-link fs-4">
-                    Личный кабинет
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/route" className="nav-link fs-4">
-                    Построить маршрут
-                  </Link>
-                </li>
+                <Nav.Item>
+                  <Link to="/personalAcc" className="nav-link fs-4" eventKey="link-1">Личный кабинет</Link>
+                </Nav.Item>
+               
+                <Nav.Item>
+                  <Link to="/route" className="nav-link fs-4" eventKey="link-2">Построить маршрут</Link>
+                </Nav.Item>
+                
 
-                <li className="nav-item">
-                  <Link to="/history" className="nav-link fs-4">
-                    История поездок
-                  </Link>
-                </li>
+                <Nav.Item>
+                  <Link to="/history" className="nav-link fs-4" eventKey="link-3">История поездок</Link>
+                </Nav.Item>
 
-                <li className="nav-item">
-                  <Link to="/logout" onClick={logoutHandler} className="nav-link fs-4">
-                    Выход
-                  </Link>
-                </li>
+  
 
-                <li className="nav-item">
-                  <Link to="/home" className="nav-link fs-4">
-                    Карта
-                  </Link>
-                </li>
+                <Nav.Item>
+                  <Link to="/home" className="nav-link fs-4" eventKey="link-4">Карта</Link>
+                </Nav.Item>
+                  <Nav.Item>
+                    <Link  to="/logout" onClick={logoutHandler} className="nav-link fs-4"eventKey="link-7">
+                      Выход
+                    </Link>
+                  </Nav.Item>
                 </>
               :
               <>
-                <li className="nav-item">
-                  <Link to="/registration" onClick={registrHandler} className="nav-link fs-4">
-                    Регистрация
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/login" onClick={loginHandler} className="nav-link fs-4">
-                    Войти
-                  </Link>
-                </li>
+                <Nav.Item>
+                  <Link to="/registration" onClick={registrHandler} className="nav-link fs-4" eventKey="link-5">Регистрация</Link>
+                </Nav.Item>
+                  <Nav.Item>
+                    <Link to="/login" onClick={loginHandler} className="nav-link fs-4" eventKey="link-6">Логин</Link>
+                 </Nav.Item>
+
               </>
              
               }
-              </ul>
-            </div>
-
-          </div>
-        </nav>
-      </h3>
-    </header>
+             </Nav>
+           
+      
+    
   );
 }
 
