@@ -15,31 +15,16 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch();
-  const isUser = useSelector(state => state.user)
+  // const isUser = useSelector(state => state.user)
 
-  console.log(isUser, "isUser")
+  // console.log(isUser, "isUser")
 
   useEffect(() => {
     (localStorage.getItem('token')) && dispatch(THUNK_checkAuth())
-}, []);
+  }
+, [])
 
-  // if (isUser) {   
-  //   return (
-  //       <div className="App">
-  //          <Header />
-  //           <Routes>
-  //               <Route path="/" element={<Home />} />
-  //               <Route path="/home" element={<Main />} />
-  //               <Route path="/route" element={<AddItinerary />} />
-  //               <Route path="/personalAcc" element={<PersonalAcc />} />
-  //               <Route path="/history" element={<History />} />
-  //               <Route path="/logout" element={<Home />} />
-  //               {/* <Route path='*' element={<Navigate to='/' replace/>}/> */}
-  //           </Routes>
 
-  //       </div>
-  //   );
-  // } 
   return (
 
     <div className="App">

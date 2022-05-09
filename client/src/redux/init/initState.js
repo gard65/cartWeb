@@ -6,5 +6,6 @@ export const initState = {
   isAuth: false,
   passportConfirm: false,
   avtoNumConfirm: false,
-  driverLicenseConfirm: false
+  driverLicenseConfirm: false,
+  loader: true
 };

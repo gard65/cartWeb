@@ -4,7 +4,7 @@ import { getCenterReducer } from './getCenterReducer';
 import { getPointReducer } from './getPointReucer';
 import { userReducer,userPassReducer, userAvtoReducer, userDriverLicReducer  } from "./userReducer";
 import { isAuthReducer } from './isAuthReducer'
-
+import { loaderReduser } from './userReducer';
 export const rootReducer = combineReducers({
     user: userReducer,
     isAuth: isAuthReducer,
@@ -12,6 +12,7 @@ export const rootReducer = combineReducers({
     coordinates: getPointReducer,
     itinerary: addItineraryReducer,
     passportConfirm: userPassReducer,
-  avtoNumConfirm: userAvtoReducer,
-  driverLicenseConfirm: userDriverLicReducer
+    avtoNumConfirm: userAvtoReducer,
+    driverLicenseConfirm: userDriverLicReducer,
+    loader: loaderReduser
 })
