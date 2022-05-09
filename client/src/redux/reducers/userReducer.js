@@ -1,16 +1,18 @@
 /* eslint-disable default-case */
 import {initState} from "../init/initState";
-import { SET_USER, UNSET_USER, SET_PASSPORT_CONFIRM, SET_AVTONUM_CONFIRM, SET_DRIVER_LICENSE_CONFIRM  } from '../types/User.types'
-
+import { SET_USER, UNSET_USER, SET_PASSPORT_CONFIRM, SET_AVTONUM_CONFIRM, SET_DRIVER_LICENSE_CONFIRM, SET_INFO_USER  } from '../types/User.types'
+import { IS_LOADING, IS_NOT_LOADING } from "../types/loaderTypes";
 export const userReducer = (state = initState, action) => {
     switch (action.type) {
         case SET_USER:
+        
             return action.payload
+           
         case UNSET_USER:
-            return null
-       
-      
-  
+          return null
+        case SET_INFO_USER:
+        console.log(action)
+            return {...state, ...action.payload}
         
         default:
             return state
@@ -41,4 +43,15 @@ export const userDriverLicReducer = ( state = initState, action) => {
         default:
           return state
     }
+}
+
+export const loaderReduser = ( state = initState, action) => {
+  switch(action.type){
+    case IS_LOADING:
+      return false
+      case IS_NOT_LOADING:
+        return true
+        default:
+        return state
+  }
 }

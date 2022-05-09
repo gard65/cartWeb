@@ -14,10 +14,16 @@ export default class AuthService {
         localStorage.setItem("token", response.data.accessToken);
         return response;
     }
+    static async refresh() {
+      const response = await $api.get("/refresh");
+      localStorage.setItem("token", response.data.accessToken);
+      return response;
+  }
 
     static async logout() {
         await $api.post("/logout");
         localStorage.removeItem("token");
+      
     }
 
 }

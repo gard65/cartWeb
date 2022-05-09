@@ -20,16 +20,17 @@ export const THUNK_logout = () => async (dispatch) => {
 
 export const THUNK_login = (userData) => async (dispatch) => {
   try {
-      dispatch(ACTION_setLoader())
+      // dispatch(ACTION_setLoader())
       const response = await AuthService.login(userData)
+      console.log(response.data.user, 'THUNK !')
       dispatch(ACTION_setUser({...response.data.user}))
       dispatch(ACTION_isAuth())
       // dispatch(THUNK_getPlayerFromDb(response.data.user.id))
-      dispatch(ACTION_unSetLoader())
+      // dispatch(ACTION_unSetLoader())
   } catch (e) {
       console.log(e)
   } finally {
-      dispatch(ACTION_unSetLoader())
+      // dispatch(ACTION_unSetLoader())
   }
 }
 
@@ -37,12 +38,9 @@ export const THUNK_login = (userData) => async (dispatch) => {
 export const THUNK_checkAuth = () => async (dispatch) => {
   try {
       dispatch(ACTION_setLoader())
-      const response = await axios.get(`${API_URL}/refresh`, {
-          withCredentials: true,
-      })
-      console.log(response) 
-      localStorage.setItem('token', response.data.accessToken)
-      dispatch(ACTION_setUser({user: response.data.user}))
+      const response = await AuthService.refresh()
+      console.log(response.data) 
+      dispatch(ACTION_setUser(response.data.user))
       dispatch(ACTION_isAuth())
       dispatch(ACTION_unSetLoader())
   } catch (e) {
