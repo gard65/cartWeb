@@ -1,7 +1,7 @@
 const {
   License, Documentation, Driver, User,
 } = require('../../db/models');
-// const license = require('../../db/models/license');
+
 
 const userService = require('../services/userService');
 
@@ -36,14 +36,15 @@ class UserController {
     try {
       const { email, password } = req.body;
       const userData = await userService.login(email, password);
+      
       console.log('user data ===> ', { userData });
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         sameSite: 'none',
         secure: true,
-      });
-      return res.json(userData);
+      }).json(userData);
+      // return res.json(userData);
     } catch (e) {
       next(e);
     }
@@ -61,7 +62,7 @@ class UserController {
         avto,
         userId,
       } = req.body;
-
+console.log("reggggg", req.body);
       // await License.upsert({ userId, number });
       // await Documentation.upsert({ userId, passport });
       // await Driver.upsert({ userId, avto });

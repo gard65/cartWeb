@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-
+import History from "./History";
 import { THUNK_editUserInfo, THUNK_getUserInfo } from '../../redux/thunk/thunkUserInfo'
 import Avatar from "./Avatar/Avatar";
+import "./personal.css"
 const divStile = {maxWidth:'700px',
 height:'40vh'
 }
@@ -67,7 +68,10 @@ function PersonalAcc(props) {
  
 
   return (
-    <>
+      <div className="personAcc">
+    <div className="history">
+      <History/>
+    </div>
           <Card style={{ width: '18rem' }}>
         <ListGroup className="list-group-flush">
           <form onSubmit={submitHandler}>
@@ -210,7 +214,7 @@ function PersonalAcc(props) {
           <Card.Link href="#">Another Link</Card.Link>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

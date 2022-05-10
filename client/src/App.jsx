@@ -7,8 +7,8 @@ import SignUp from './components/InUP/SignUp/SignUp';
 import Main from './components/Main/Main';
 import SignIn from './components/InUP/SignIn/SignIn';
 import PersonalAcc from './components/PersonalInfo/PersonalAcc';
-import History from './components/PersonalInfo/History';
-
+// import History from './components/PersonalInfo/History';
+import Role from './components/SelectRole/Role';
 import AddItinerary from "./components/AddItinerary/AddItinerary"
 import Home from './components/homepage/Home';
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,9 +35,10 @@ function App() {
           <Route path="/home" element={<Main />} />
           <Route path="/registration" element={<SignUp />} />
           <Route path="/login" element={<SignIn />} />
+          <Route path="/role" element={<Role />} />
           <Route path="/route" element={<AddItinerary />} />
           <Route path="/personalAcc" element={<PersonalAcc />} />
-          <Route path="/history" element={<History />} />
+          {/* <Route path="/history" element={<History />} /> */}
           <Route path="/" element={<Home/>} />
         </Routes>
       </div>

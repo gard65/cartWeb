@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.Documentation, { foreignKey: 'userId' });
-      this.hasOne(models.License, { foreignKey: 'userId' });
+      this.hasMany(models.Documentation, { foreignKey: 'userId' });
+      this.hasOne(models.Driver, { foreignKey: 'userId' });
+      this.hasMany(models.License, { foreignKey: 'userId' });
       this.hasOne(models.Avatar, { foreignKey: 'userId' });
       this.hasOne(models.Token, { foreignKey: 'userId' });
       this.hasMany(models.Chat, { foreignKey: 'userId' });
