@@ -1,5 +1,5 @@
 const {
-  License, Documentation, Driver, User,
+  License, Documentation, Driver, User, Avatar,
 } = require('../../db/models');
 // const license = require('../../db/models/license');
 
@@ -120,7 +120,10 @@ class UserController {
       // user.passport = passport.passport;
       // res.json(user);
       res.json({
-        ...user, passport: passport?.passport, number: license?.number, avto: avto?.avto,
+        ...user,
+        passport: passport?.passport,
+        number: license?.number,
+        avto: avto?.avto,
       });
     } catch (error) {
       console.log(error);
