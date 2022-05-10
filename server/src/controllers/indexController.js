@@ -103,7 +103,7 @@ class UserController {
       // const numberFromDb = License.findOne({ where: { id: userId } });
       // const passportFromDb = Documentation.findOne({ where: { id: userId } });
       // const avtoFromDb = Driver.findOne({ where: { id: userId } });
-      res.json({ passport: !!passportNum, avtoNum: !!avtoNum, driverLicense: !!license });
+      res.json({ passport: !!passportNum.passport, avtoNum: !!avtoNum.avto, driverLicense: !!license.number });
     } catch (error) {
       console.log(error);
     }

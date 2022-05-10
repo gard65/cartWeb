@@ -43,7 +43,7 @@ function PersonalAcc(props) {
   const numberHandler = (e) => setNumber(e.target.value);
   const avtoHandler = (e) => setAvto(e.target.value);
 
-  console.log({ gender });
+
 
   const submitHandler = (e) => {
     e.preventDefault();

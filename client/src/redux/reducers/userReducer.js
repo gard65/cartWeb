@@ -11,7 +11,7 @@ export const userReducer = (state = initState, action) => {
         case UNSET_USER:
           return null
         case SET_INFO_USER:
-        console.log(action)
+       
             return {...state, ...action.payload}
         
         default:
