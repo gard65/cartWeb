@@ -21,7 +21,7 @@
 }
 .ag-loader-car_img {
   width: 44px;
-  transform: scale(10);
+  transform: scale(110);
   opacity: 0;
 
   -webkit-animation: an-loader-car_img 7s infinite;
