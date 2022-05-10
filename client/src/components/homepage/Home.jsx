@@ -22,7 +22,7 @@ function Home(props) {
       <Link to="/registration" className="nav-link fs-4" eventKey="link-5">Регистрация</Link>
     </Nav.Item>
     <Nav.Item>
-      <Link to="/login" className="nav-link fs-4" eventKey="link-6">Авторизация </Link>
+      <Link to="/login" className="nav-link fs-4" eventKey="link-6">Авторизация bla bla</Link>
     </Nav.Item>
 </span>
 </a>
