@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import {useDispatch} from "react-redux";
+
+import {useDispatch, useSelector} from "react-redux";
 import {THUNK_login } from "../../../redux/thunk/thunkAuth";
+// import { THUNK_getUserInfo } from '../../../redux/thunk/thunkUserInfo';
 // import $api from "../../../http";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Navigate} from "react-router-dom";
+// import user from '../../../../../server/db/models/user';
 
 function SignIn() {
 
@@ -10,18 +13,34 @@ function SignIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
-
+    const state = useSelector((state) => state)
 
     const emailHandler = (e) => setEmail(e.target.value)
     const passwordHandler = (e) => setPassword(e.target.value)
-
-
+    const user = useSelector((state) => state.user)
+    
  const submitHandler = async (e) => {
         e.preventDefault()
         await dispatch(THUNK_login({email, password}))
-        navigate('/personalAcc')
-    }
+     
+          
+        //     if(
+        //       user.li 
+        //       && user.pass
+        //       && user.avtoNum
+        // ){
+     
+          
+        //   navigate('/role')
+        // }else{
+    
 
+        //   navigate('/personalAcc')
+        // }
+    }
+    if(!user){
+      
+    
   return (
 
     <div>
@@ -53,6 +72,15 @@ function SignIn() {
 
 
   );
+    }
+    if(
+       user.li 
+      && user.pass
+      && user.avtoNum){
+      return <Navigate to ='/role'/>
+    }else{
+      return <Navigate to = '/personalAcc'/>
+    }
   }
   
   

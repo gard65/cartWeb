@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt');
 const ApiError = require('../exceptions/apiError');
 const tokenService = require('./tokenService');
-const { User } = require('../../db/models');
+const {
+  User, License, Documentation, Driver,
+} = require('../../db/models');
 
 class UserService {
   async registration(name, email, telephone, password, gender, age) {
@@ -24,7 +26,17 @@ class UserService {
   }
 
   async login(email, password) {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: [
+        { model: License }, { model: Documentation },
+        { model: Driver },
+      ],
+    });
+
+    const userPars = JSON.parse(JSON.stringify(user));
+    console.log('USERPARSEEEEE', userPars);
+    // const license = await License.findOne({ where: { userId: user.id}})
 
     if (!user) {
       throw ApiError.BadRequest('Пользователь с таким email не найден');
@@ -33,8 +45,17 @@ class UserService {
     if (!isCorrectPass) {
       throw ApiError.BadRequest('Неверный пароль');
     }
-    const userDto = { email: user.email, id: user.id };
+    const userDto = {
+      email: userPars.email,
+      id: userPars.id,
+      li: userPars.Licenses[0]?.number,
+      pass: userPars.Documentations[0]?.passport,
+      avtoNum: userPars.Driver?.avto,
+    };
 
+    console.log('====================================');
+    console.log(userDto);
+    console.log('====================================');
     const tokens = await tokenService.generateToken({ ...userDto });
 
     await tokenService.saveToken(userDto.id, tokens.refreshToken);

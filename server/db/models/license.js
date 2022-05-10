@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.User, { foreignKey: 'userId' });
-      this.hasOne(models.Driver, { foreignKey: 'licenseId' });
+      // this.hasOne(models.Driver, { foreignKey: 'licenseId' });
     }
   }
   License.init({
