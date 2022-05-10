@@ -9,5 +9,8 @@ export const ACTION_setUser = (user) => ({type: SET_USER, payload: user})
 export const ACTION_setInfoToUser = (infoUser) =>({type: SET_INFO_USER, payload: infoUser})
 
 export const passportConfirm = (passport) =>({type: SET_PASSPORT_CONFIRM, payload: passport})
+export const driverLicenseConfirm = (driverLicense) => {
+  console.log(driverLicense, "<==========DRIVER");
+  return {type: SET_DRIVER_LICENSE_CONFIRM, payload: driverLicense}
+}
 export const avtoNumConfirm = (avtoNum) =>({type: SET_AVTONUM_CONFIRM, payload: avtoNum})
-export const driverLicenseConfirm = (driverLicense) =>({type: SET_DRIVER_LICENSE_CONFIRM, payload: driverLicense})
