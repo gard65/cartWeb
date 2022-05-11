@@ -62,7 +62,7 @@ class UserController {
         avto,
         userId,
       } = req.body;
-console.log("reggggg", req.body);
+
       // await License.upsert({ userId, number });
       // await Documentation.upsert({ userId, passport });
       // await Driver.upsert({ userId, avto });

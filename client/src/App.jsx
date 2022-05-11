@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useEffect} from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import {THUNK_checkAuth} from "./redux/thunk/thunkAuth";
 import Header from './components/Header/Header'
 import SignUp from './components/InUP/SignUp/SignUp';
@@ -15,6 +15,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation()
+  console.log('====================================');
+  console.log(location);
+  console.log('====================================');
   // const isUser = useSelector(state => state.user)
 
   // console.log(isUser, "isUser")
@@ -28,18 +32,26 @@ function App() {
   return (
 
     <div className="App">
+         { location.pathname ==='/' ? null : <Header />  }
 
-      <Header />
-      <div className="container">
-        <Routes>
-          <Route path="/home" element={<Main />} />
-          <Route path="/registration" element={<SignUp />} />
+      <div>
+
+      <Routes>
+          <Route path="/" element={<Home/>} />
           <Route path="/login" element={<SignIn />} />
+          <Route path="/registration" element={<SignUp />} />
+      </Routes>
+      
+      </div>
+
+      <div className="route">
+        <Routes>
+          
+          <Route path="/home" element={<Main />} />
           <Route path="/role" element={<Role />} />
           <Route path="/route" element={<AddItinerary />} />
           <Route path="/personalAcc" element={<PersonalAcc />} />
           {/* <Route path="/history" element={<History />} /> */}
-          <Route path="/" element={<Home/>} />
         </Routes>
       </div>
 

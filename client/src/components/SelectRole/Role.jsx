@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import './role.css'
 function Role(props) {
   return (
     <div>
