@@ -22,11 +22,16 @@ function SignIn() {
     e.preventDefault();
     await dispatch(THUNK_login({ email, password }));
   };
+
+  function verification(obj){
+
+  }
+
   if (!user) {
     return (
       <div>
         <form onSubmit={submitHandler}>
-          <div className="mb-3">
+          <div className="mb-3 mt-4">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
             </label>
@@ -59,7 +64,8 @@ function SignIn() {
       </div>
     );
   }
-  if (user.name && user.li && user.pass && user.avtoNum) {
+
+  if ( user.pass &&(user.name !== '')) {
     return <Navigate to="/role" />;
   } else {
     return <Navigate to="/personalAcc" />;

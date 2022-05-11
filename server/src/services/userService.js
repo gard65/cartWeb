@@ -36,7 +36,6 @@ class UserService {
 
     const userPars = JSON.parse(JSON.stringify(user));
 
-
     if (!user) {
       throw ApiError.BadRequest('Пользователь с таким email не найден');
     }
@@ -46,13 +45,13 @@ class UserService {
     }
     const userDto = {
       email: userPars.email,
+      name: userPars.name,
       id: userPars.id,
       li: userPars.Licenses[0]?.number,
       pass: userPars.Documentations[0]?.passport,
       avtoNum: userPars.Driver?.avto,
     };
 
- 
     const tokens = await tokenService.generateToken({ ...userDto });
 
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
