@@ -7,8 +7,12 @@ import { THUNK_logout} from '../../redux/thunk/thunkAuth'
 import { useNavigate } from 'react-router-dom'
 import { Nav} from 'react-bootstrap'
 
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import logoo from '../../components/PersonalInfo/Avatar/logoo.png';
 
 function Header() {
+  const [avatar, setAvatar]= useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
@@ -17,7 +21,16 @@ function Header() {
     dispatch(THUNK_logout())
     navigate('/login')
   }
-  
+  useEffect (async()=>{
+    if (user.id){
+      console.log(user.id);
+      const res = await axios.get(`http://localhost:3001/avatar/${user.id}`)
+      setAvatar(res.data.img)
+     
+    }
+
+  }, [user])
+ 
 
  
 
@@ -68,6 +81,21 @@ function Header() {
                       Выход
                  </button>
                   </Nav.Item>
+                  <div className='avatarName'>
+
+                  <div className="avatar">
+        {
+          avatar
+          ? <img className="logo1" src={`http://localhost:3001/img/${avatar}`} alt="avatar" />
+          : <img className="logo1" src={`${logoo}`} alt="avatar" />
+        
+        }
+
+      </div>
+      <div>
+        {user?.name?.split(' ')[0] + ' ' + user?.name?.split(' ')[1][0]+'.'}
+      </div>
+                  </div>
                 </>
               :
               <>
@@ -79,7 +107,7 @@ function Header() {
                  </Nav.Item>
 
               </>
-             
+              
               }
              </Nav>
            
