@@ -17,9 +17,7 @@ import MapRoute from "./components/MapRoute/MapRoute";
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log("====================================");
-  console.log(location);
-  console.log("====================================");
+
   
 
   useEffect(() => {
@@ -35,16 +33,15 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/registration" element={<SignUp />} />
       </Routes>
+      <div className="container">
 
-      <div className="route">
         <Routes>
           <Route path="/home" element={<Main />} />
           <Route path="/role" element={<Role />} />
           <Route path="/route" element={<AddItinerary />} />
           <Route path="/personalAcc" element={<PersonalAcc />} />
-          {/* <Route path="/history" element={<History />} /> */}
           <Route path="/mapRouter" element={<MapRoute />} />
-          <Route path="/" element={<Home />} />
+       
         </Routes>
       </div>
     </div>

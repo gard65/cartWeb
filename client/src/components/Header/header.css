@@ -1,3 +1,15 @@
+.bg-success{
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-around
+}
 .collapse{
   display: flex;
   justify-content: flex-end;
@@ -13,8 +25,17 @@
 }
 
 .nav-link{
-  
-  color: aliceblue;
-  font-size: larger;
+ text-decoration: none;
+  color: rgb(54,176,32,1);
+  /* font-size: larger; */
 
+}
+.slash{
+
+  display: flex;
+  align-items: center;
+}
+
+.btn-outline-success{
+  border-color: white;
 }
