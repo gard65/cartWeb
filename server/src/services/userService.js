@@ -35,8 +35,11 @@ class UserService {
     });
 
     const userPars = JSON.parse(JSON.stringify(user));
+<<<<<<< HEAD
     
     // const license = await License.findOne({ where: { userId: user.id}})
+=======
+>>>>>>> cf1b88bc8bcb3b30259f6c366065b43367a56955
 
     if (!user) {
       throw ApiError.BadRequest('Пользователь с таким email не найден');
@@ -47,13 +50,13 @@ class UserService {
     }
     const userDto = {
       email: userPars.email,
+      name: userPars.name,
       id: userPars.id,
       li: userPars.Licenses[0]?.number,
       pass: userPars.Documentations[0]?.passport,
       avtoNum: userPars.Driver?.avto,
     };
 
-    
     const tokens = await tokenService.generateToken({ ...userDto });
 
     await tokenService.saveToken(userDto.id, tokens.refreshToken);

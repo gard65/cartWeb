@@ -7,14 +7,16 @@ import { THUNK_editUserInfo, THUNK_getUserInfo } from '../../redux/thunk/thunkUs
 import Avatar from "./Avatar/Avatar";
 
 import "./personal.css"
-const divStile = {maxWidth:'700px',
-height:'40vh'
-}
+// const divStile = {maxWidth:'700px',
+// height:'40vh'
+// }
 
 
 
 function PersonalAcc(props) {
   const user = useSelector((state) => state.user);
+
+  console.log(user);
 
   const [name, setName] = useState(user?.name);
   const [telephone, setTelephone] = useState(user?.telephone);
@@ -214,8 +216,7 @@ function PersonalAcc(props) {
           </form>
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#">Card Link</Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
+         
         </Card.Body>
       </Card>
     </div>
