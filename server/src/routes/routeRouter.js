@@ -14,11 +14,11 @@ router.route('/')
   .post(async (req, res) => {
     try {
       const {
-        time, date, pointA, pointB,
+        time, date, pointA, pointB, userId, userIsDriver
       } = req.body;
-      const addRoutes = await Route.create({ ...req.body });
+      const newRoute = await Route.create({ ...req.body });
       // console.log('=========>', addRoutes);
-      // await UserRoute.create({ routeId: addRoutes.dataValues.id });
+      // await UserRoute.create({ routeId: newRoute.id, userId, driver: userIsDriver  });
       res.json(addRoutes);
     } catch (error) {
       console.log(error);
