@@ -7,9 +7,9 @@ import { THUNK_editUserInfo, THUNK_getUserInfo } from '../../redux/thunk/thunkUs
 import Avatar from "./Avatar/Avatar";
 
 import "./personal.css"
-const divStile = {maxWidth:'700px',
-height:'40vh'
-}
+// const divStile = {maxWidth:'700px',
+// height:'40vh'
+// }
 
 
 
@@ -214,8 +214,7 @@ function PersonalAcc(props) {
           </form>
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#">Card Link</Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
+         
         </Card.Body>
       </Card>
     </div>

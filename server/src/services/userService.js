@@ -35,8 +35,7 @@ class UserService {
     });
 
     const userPars = JSON.parse(JSON.stringify(user));
-    console.log('USERPARSEEEEE', userPars);
-    // const license = await License.findOne({ where: { userId: user.id}})
+
 
     if (!user) {
       throw ApiError.BadRequest('Пользователь с таким email не найден');
@@ -53,9 +52,7 @@ class UserService {
       avtoNum: userPars.Driver?.avto,
     };
 
-    console.log('====================================');
-    console.log(userDto);
-    console.log('====================================');
+ 
     const tokens = await tokenService.generateToken({ ...userDto });
 
     await tokenService.saveToken(userDto.id, tokens.refreshToken);

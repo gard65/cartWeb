@@ -2,13 +2,18 @@
   display: flex;
   justify-content: flex-end;
 }
+.nav-tabs{
+  border: none;
+}
 
 .logo1{
   width: 100px;
   height: 100px;
   border-radius: 50%; 
 }
+
 .nav-link{
+  
   color: aliceblue;
   font-size: larger;
 
