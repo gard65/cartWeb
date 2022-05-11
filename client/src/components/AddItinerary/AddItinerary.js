@@ -34,7 +34,7 @@ function AddItinerary() {
     dispatch(addItineraryFromDb(valueWhence, whereValue));
     dispatch(postDateDepartAction(dateValue));
     dispatch(postTimeDepartAction(timeValue)); 
-    dispatch(sendDateAndTime(dateValue, timeValue));
+    dispatch(sendDateAndTime(dateValue, timeValue, valueWhence, whereValue));
     navigate("/mapRouter");
   }
 
