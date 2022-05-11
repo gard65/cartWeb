@@ -1,7 +1,7 @@
 import React from 'react';
 
 function History(props) {
-
+  
   return (
     <div className="container my-5">
     <h2 className="my-5">История поездок</h2>
@@ -18,6 +18,7 @@ function History(props) {
           <tbody id="tbody"></tbody>
         </table>
       </div>
+      
     </div>
   );
 }

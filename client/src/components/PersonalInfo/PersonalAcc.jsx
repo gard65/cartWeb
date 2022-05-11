@@ -67,10 +67,10 @@ function PersonalAcc(props) {
  
 
   return (
-    <>
-          <Card style={{ width: '18rem' }}>
-        <ListGroup className="list-group-flush">
-          <form onSubmit={submitHandler}>
+  <>
+  <Card style={{ width: '18rem' }}>
+  <ListGroup className="list-group-flush">
+  <form onSubmit={submitHandler}>
   <Avatar />
   <Card.Body>
     <Card.Title>Card Title</Card.Title>
