@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class UserRoute extends Model {
     /**
@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
+
     }
   }
   UserRoute.init({
     userId: DataTypes.INTEGER,
     routeId: DataTypes.INTEGER,
-    driver: DataTypes.BOOLEAN
+    driver: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'UserRoute',
