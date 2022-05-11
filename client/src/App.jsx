@@ -12,6 +12,7 @@ import Role from './components/SelectRole/Role';
 import AddItinerary from "./components/AddItinerary/AddItinerary"
 import Home from './components/homepage/Home';
 import { useSelector, useDispatch } from 'react-redux';
+import MapRoute from "./components/MapRoute/MapRoute"
 
 function App() {
   const dispatch = useDispatch();
@@ -26,9 +27,7 @@ function App() {
 
 
   return (
-
-    <div className="App">
-
+    <div className="App container">
       <Header />
       <div className="container">
         <Routes>
@@ -39,10 +38,10 @@ function App() {
           <Route path="/route" element={<AddItinerary />} />
           <Route path="/personalAcc" element={<PersonalAcc />} />
           {/* <Route path="/history" element={<History />} /> */}
-          <Route path="/" element={<Home/>} />
+          <Route path="/mapRouter" element={<MapRoute />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
-
     </div>
   );
 }

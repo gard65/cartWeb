@@ -1,3 +1,5 @@
 export const GET_CENTER = "GET_CENTER";
 export const GET_CORDINATE = "GET_CORDINATE";
 export const ADD_ITINERARY = "ADD_ITINERARY";
+export const GET_POINT_START = "GET_POINT_START";
+export const GET_POINT_FINISH = "GET_POINT_FINISH";

@@ -8,6 +8,7 @@ const axios = require('axios');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
+console.log(path);
 // const corsOptions = {
 //   origin: 'http://localhost:3000',
 //   credentials: true,
@@ -26,7 +27,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(process.env.PWD, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
 
 app.use('/api', usersRouter);

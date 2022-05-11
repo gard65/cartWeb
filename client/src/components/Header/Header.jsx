@@ -1,9 +1,10 @@
-import './header.css'
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from "react-router-dom";
-import { THUNK_logout} from '../../redux/thunk/thunkAuth'
+import "./header.css";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { THUNK_logout } from "../../redux/thunk/thunkAuth";
 // import { THUNK_login} from '../../redux/thunk/thunkAuth'
 // import { THUNK_register} from '../../redux/thunk/thunkRegistration'
+
 import { useNavigate } from 'react-router-dom'
 import { Nav} from 'react-bootstrap'
 
@@ -113,7 +114,8 @@ function Header() {
            
       
     
+
   );
 }
 
-export default Header
+export default Header;
