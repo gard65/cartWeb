@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
 // const { v4: uuid } = require('uuid')
 const router = require('express').Router();
 const axios = require('axios');
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(process.env.PWD, 'public')));
+app.use(morgan('dev'));
 
 app.use('/api', usersRouter);
 app.use('/avatar', avatarRouter);

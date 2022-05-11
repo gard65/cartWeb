@@ -22,7 +22,7 @@ export const THUNK_login = (userData) => async (dispatch) => {
   try {
       // dispatch(ACTION_setLoader())
       const response = await AuthService.login(userData)
-    
+   
       dispatch(ACTION_setUser({...response.data.user}))
       dispatch(ACTION_isAuth())
       // dispatch(THUNK_getPlayerFromDb(response.data.user.id))

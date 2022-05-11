@@ -2,8 +2,8 @@ import './header.css'
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from "react-router-dom";
 import { THUNK_logout} from '../../redux/thunk/thunkAuth'
-import { THUNK_login} from '../../redux/thunk/thunkAuth'
-import { THUNK_register} from '../../redux/thunk/thunkRegistration'
+// import { THUNK_login} from '../../redux/thunk/thunkAuth'
+// import { THUNK_register} from '../../redux/thunk/thunkRegistration'
 import { useNavigate } from 'react-router-dom'
 import { Nav} from 'react-bootstrap'
 
@@ -60,6 +60,10 @@ function Header() {
                
                 <Nav.Item>
                   <Link to="/route" className="nav-link fs-4" eventKey="link-2">Построить маршрут</Link>
+                </Nav.Item>
+               
+                <Nav.Item>
+                  <Link to="/role" className="nav-link fs-4" eventKey="link-2">Роль</Link>
                 </Nav.Item>
                 
 
