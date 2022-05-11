@@ -4,6 +4,8 @@ export const initState = {
   itinerary: {},
   pointStart: [],
   pointFinish: [],
+  dateDepurture:[],
+  timeDeparture:[],
   user: null,
   isAuth: false,
   passportConfirm: false,

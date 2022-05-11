@@ -7,6 +7,8 @@ import { getRoutStartReducer } from "./getRoutStartReducer";
 import { userReducer,userPassReducer, userAvtoReducer, userDriverLicReducer  } from "./userReducer";
 import { isAuthReducer } from './isAuthReducer'
 import { loaderReduser } from './userReducer';
+import { postDateDepartureReducer } from './postDateDepartReducer';
+import { postTimeDepartReducer } from './postTimeDepartReducer';
 export const rootReducer = combineReducers({
   user: userReducer,
   isAuth: isAuthReducer,
@@ -15,6 +17,8 @@ export const rootReducer = combineReducers({
   itinerary: addItineraryReducer,
   pointStart: getRoutStartReducer,
   pointFinish: getRoutFinishReducer,
+  dateDepurture:postDateDepartureReducer,
+  timeDeparture:postTimeDepartReducer,
   passportConfirm: userPassReducer,
   avtoNumConfirm: userAvtoReducer,
   driverLicenseConfirm: userDriverLicReducer,

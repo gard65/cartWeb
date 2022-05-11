@@ -18,14 +18,10 @@ export const getMapStateFromDb = () => (dispatch) => {
   dispatch(getCoordinate(coordinatesArr));
 };
 export const addItineraryFromDb = (pointA, pointB) => async (dispatch) => {
-// await axios({
-//   method: "post",
-//   url: `http://localhost:3001/route`,
-//   data: {
-//     pointA,
-//     pointB,
-//   },
-// });
+  await axios.post(`http://localhost:3001/route`, {
+    pointA,
+    pointB
+  });
   const resPointA = await axios.get(
     `https://api.geotree.ru/address.php?term=${pointA}&limit=1`
   );
@@ -43,4 +39,10 @@ export const addItineraryFromDb = (pointA, pointB) => async (dispatch) => {
   ];
   dispatch(getPointStartAction(pointStart));
   dispatch(getPointFinishAction(pointFinish));
-};;
+};
+export const sendDateAndTime = (dateDepart, timeDepart) => async () => {
+  await axios.post(`http://localhost:3001/route`, {
+    time: timeDepart,
+    date: dateDepart,
+  });
+};
