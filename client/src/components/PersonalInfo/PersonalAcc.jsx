@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import History from "./History";
 import { THUNK_editUserInfo, THUNK_getUserInfo } from '../../redux/thunk/thunkUserInfo'
 import Avatar from "./Avatar/Avatar";
+
 import "./personal.css"
-const divStile = {maxWidth:'700px',
-height:'40vh'
-}
+// const divStile = {maxWidth:'700px',
+// height:'40vh'
+// }
+
 
 
 function PersonalAcc(props) {
@@ -68,6 +70,7 @@ function PersonalAcc(props) {
  
 
   return (
+
       <div className="personAcc">
     <div className="history">
       <History/>
@@ -75,6 +78,7 @@ function PersonalAcc(props) {
           <Card style={{ width: '18rem' }}>
         <ListGroup className="list-group-flush">
           <form onSubmit={submitHandler}>
+
   <Avatar />
   <Card.Body>
     <Card.Title>Card Title</Card.Title>
@@ -210,8 +214,7 @@ function PersonalAcc(props) {
           </form>
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#">Card Link</Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
+         
         </Card.Body>
       </Card>
     </div>
