@@ -53,7 +53,7 @@ function History(props) {
       <td>@twitter</td>
     </tr>
   </tbody>
-</Table>
+  </Table>
     </div>
 
     </div>

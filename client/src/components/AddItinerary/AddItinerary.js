@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addItineraryAction } from "../../redux/actions/addItineraryActions";
-import { addItineraryFromDb, sendDateAndTime } from "../../redux/thuncs/asyncAction";
+import { addItineraryFromDb, sendDateAndTime, THUNK_getRoutesFromDB } from "../../redux/thuncs/asyncAction";
 import { useNavigate } from "react-router-dom";
 import { postDateDepartAction } from "../../redux/actions/postDateDepartAction";
 import { postTimeDepartAction } from "../../redux/actions/postTimeDepartAction";
@@ -11,6 +11,8 @@ function AddItinerary() {
   const [whereValue, setWhereValue] = useState();
   const [dateValue, setDateValue] = useState();
   const [timeValue, setTimeValue] = useState();
+  const {id, isDriver} = useSelector(state => state.user)
+  const routes = useSelector(state => state.routes)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function inputWhence(e) {
@@ -34,11 +36,15 @@ function AddItinerary() {
     dispatch(addItineraryFromDb(valueWhence, whereValue));
     dispatch(postDateDepartAction(dateValue));
     dispatch(postTimeDepartAction(timeValue)); 
-    dispatch(sendDateAndTime(dateValue, timeValue, valueWhence, whereValue));
+    dispatch(sendDateAndTime(dateValue, timeValue, valueWhence, whereValue, id, isDriver));
     navigate("/mapRouter");
   }
-
+useEffect (() => {
+  dispatch(THUNK_getRoutesFromDB(isDriver))
+  console.log(routes);
+}, [])
   return (
+    <>
     <form onSubmit={sendValue} type="submit" className="row g-3">
       <div className="col-md-6">
         <label htmlFor="whence" className="form-label fs-4 my-5">
@@ -98,6 +104,19 @@ function AddItinerary() {
         </button>
       </div>
     </form>
+    <div>
+      {routes?.map(el => 
+      <>
+        <p>
+          Откуда : {el.Route.pointA} 
+        Куда : {el.Route.pointA} 
+        Время: {el.Route.time}
+        Кто нах: {el.User.name}
+        </p>
+      </>
+      )}
+    </div>
+    </>
   );
 }
 export default AddItinerary;

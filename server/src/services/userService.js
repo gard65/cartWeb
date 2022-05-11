@@ -20,7 +20,7 @@ class UserService {
       email: user.email, id: user.id,
     };
     const tokens = await tokenService.generateToken({ ...userDto });
-    console.log(tokens);
+    
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }
@@ -35,6 +35,11 @@ class UserService {
     });
 
     const userPars = JSON.parse(JSON.stringify(user));
+<<<<<<< HEAD
+    
+    // const license = await License.findOne({ where: { userId: user.id}})
+=======
+>>>>>>> cf1b88bc8bcb3b30259f6c366065b43367a56955
 
     if (!user) {
       throw ApiError.BadRequest('Пользователь с таким email не найден');

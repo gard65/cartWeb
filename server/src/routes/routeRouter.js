@@ -1,25 +1,38 @@
 const router = require('express').Router();
-const { Route } = require('../../db/models');
+const { Route, UserRoute, User } = require('../../db/models');
+
+router.get('/:role', async (req, res) => {
+  try {
+    const { role } = req.params;
+    const routes = await UserRoute.findAll({
+      where: { driver: role },
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: Route,
+
+        },
+      ],
+    });
+    console.log('routes', routes);
+    res.json(routes);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 router.route('/')
-  .get(async (req, res) => {
-    try {
-      const routes = await Route.findAll();
-      res.json(routes);
-    } catch (error) {
-      console.log(error);
-    }
-  })
-
   .post(async (req, res) => {
     try {
       const {
-        time, date, pointA, pointB,
+        time, date, pointA, pointB, userId, isDriver,
       } = req.body;
-      const addRoutes = await Route.create({ ...req.body });
-      // console.log('=========>', addRoutes);
-      // await UserRoute.create({ routeId: addRoutes.dataValues.id });
-      res.json(addRoutes);
+      const newRoute = await Route.create({ ...req.body });
+      await UserRoute.create({ routeId: newRoute.id, userId, driver: isDriver });
+      res.json(newRoute);
     } catch (error) {
       console.log(error);
     }

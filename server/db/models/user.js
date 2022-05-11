@@ -17,10 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.Avatar, { foreignKey: 'userId' });
       this.hasOne(models.Token, { foreignKey: 'userId' });
       this.hasMany(models.Chat, { foreignKey: 'userId' });
-      this.belongsToMany(models.Route, {
-        through: 'UserRoute',
-        foreignKey: 'routeId',
-      });
+      this.hasMany(models.UserRoute, { foreignKey: 'userId' });
       this.hasOne(models.Chat, { foreignKey: 'userId' });
     }
   }

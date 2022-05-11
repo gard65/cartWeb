@@ -3,6 +3,7 @@ import { getCoordinate } from "../actions/coordinateActions";
 import axios from "axios";
 import { getPointStartAction } from "../actions/pointRouteStartAction";
 import { getPointFinishAction } from "../actions/pointRouteFinishAction";
+import { setRoutesToState } from "../actions/routeActions";
 
 export const getMapStateFromDb = () => (dispatch) => {
   const mapStateObj = {
@@ -37,11 +38,18 @@ export const addItineraryFromDb = (pointA, pointB) => async (dispatch) => {
   dispatch(getPointFinishAction(pointFinish));
 };
 export const sendDateAndTime =
-  (dateDepart, timeDepart, pointA, pointB) => async () => {
+  (dateDepart, timeDepart, pointA, pointB, userId, isDriver) => async () => {
     await axios.post(`http://localhost:3001/route`, {
       time: timeDepart,
       date: dateDepart,
       pointA,
       pointB,
+      userId,
+      isDriver
     });
   };
+export const THUNK_getRoutesFromDB = (isDriver)=> async (dispatch) => {
+  const routes = await axios.get(`http://localhost:3001/route/${!isDriver}`)
+  console.log('routes from back', routes);
+  dispatch(setRoutesToState(routes.data))
+}
