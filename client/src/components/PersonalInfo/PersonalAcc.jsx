@@ -70,6 +70,7 @@ function PersonalAcc(props) {
  
 
   return (
+
       <div className="personAcc">
     <div className="history">
       <History/>
@@ -77,6 +78,7 @@ function PersonalAcc(props) {
           <Card style={{ width: '18rem' }}>
         <ListGroup className="list-group-flush">
           <form onSubmit={submitHandler}>
+
   <Avatar />
   <Card.Body>
     <Card.Title>Card Title</Card.Title>
