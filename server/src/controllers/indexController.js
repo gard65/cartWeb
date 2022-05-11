@@ -37,7 +37,6 @@ class UserController {
       const { email, password } = req.body;
       const userData = await userService.login(email, password);
       
-      console.log('user data ===> ', { userData });
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
@@ -62,7 +61,6 @@ class UserController {
         avto,
         userId,
       } = req.body;
-console.log("reggggg", req.body);
       // await License.upsert({ userId, number });
       // await Documentation.upsert({ userId, passport });
       // await Driver.upsert({ userId, avto });
@@ -116,7 +114,6 @@ console.log("reggggg", req.body);
       const passport = await Documentation.findOne({ where: { userId } });
       const license = await License.findOne({ where: { userId } });
       const avto = await Driver.findOne({ where: { userId } });
-      console.log('passssss', passport);
       const user = await User.findByPk(userId, { raw: true, attributes: { exclude: ['email', 'password', 'id'] } });
       // user.passport = passport.passport;
       // res.json(user);

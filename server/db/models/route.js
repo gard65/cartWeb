@@ -11,10 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsToMany(models.User, {
-        through: 'UserRoute',
-        foreignKey: 'userId',
-      });
+      this.hasMany(models.UserRoute, { foreignKey: 'routeId' });
       this.hasMany(models.Chat, { foreignKey: 'routeId' });
       this.hasOne(models.Review, { foreignKey: 'routeId' });
     }

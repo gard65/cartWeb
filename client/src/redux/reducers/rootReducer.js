@@ -9,6 +9,7 @@ import { isAuthReducer } from './isAuthReducer'
 import { loaderReduser } from './userReducer';
 import { postDateDepartureReducer } from './postDateDepartReducer';
 import { postTimeDepartReducer } from './postTimeDepartReducer';
+import { routesReducer } from './routesReducer';
 export const rootReducer = combineReducers({
   user: userReducer,
   isAuth: isAuthReducer,
@@ -23,4 +24,5 @@ export const rootReducer = combineReducers({
   avtoNumConfirm: userAvtoReducer,
   driverLicenseConfirm: userDriverLicReducer,
   loader: loaderReduser,
+  routes: routesReducer
 });

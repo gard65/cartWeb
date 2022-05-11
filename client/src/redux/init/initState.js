@@ -12,4 +12,5 @@ export const initState = {
   avtoNumConfirm: false,
   driverLicenseConfirm: false,
   loader: true,
+  routes: []
 };

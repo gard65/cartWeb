@@ -16,7 +16,7 @@ class TokenService {
     const tokenData = await Token.findOne({ where: { userId } });
     if (tokenData) {
       const updatedToken = await Token.update({ refreshToken }, { where: { userId } });
-      console.log('updateToken------>', updatedToken);
+      
 
       const token = await Token.create({ where: { updatedToken } });
 
@@ -28,7 +28,7 @@ class TokenService {
   }
 
   async removeToken(refreshToken) {
-    console.log('refreshToken==>', refreshToken);
+    
 
     const currToken = await Token.findOne({ where: { refreshToken } });
     await currToken.destroy();

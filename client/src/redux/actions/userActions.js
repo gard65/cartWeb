@@ -1,4 +1,4 @@
-import { IS_AUTH, IS_NOT_AUTH, SET_USER, UNSET_USER, SET_PASSPORT_CONFIRM, SET_AVTONUM_CONFIRM, SET_DRIVER_LICENSE_CONFIRM, SET_INFO_USER } from '../types/User.types'
+import { IS_AUTH, IS_NOT_AUTH, SET_USER, UNSET_USER, SET_PASSPORT_CONFIRM, SET_AVTONUM_CONFIRM, SET_DRIVER_LICENSE_CONFIRM, SET_INFO_USER, SET_USER_ROLE_TO_STATE } from '../types/User.types'
 
 export const ACTION_isAuth = () => ({type: IS_AUTH})
 export const ACTION_isNotAuth = () => ({type: IS_NOT_AUTH})
@@ -14,3 +14,4 @@ export const driverLicenseConfirm = (driverLicense) => {
   return {type: SET_DRIVER_LICENSE_CONFIRM, payload: driverLicense}
 }
 export const avtoNumConfirm = (avtoNum) =>({type: SET_AVTONUM_CONFIRM, payload: avtoNum})
+export const setUserRoleToState = (isDriver) => ({type: SET_USER_ROLE_TO_STATE, payload: isDriver})

@@ -20,7 +20,7 @@ class UserService {
       email: user.email, id: user.id,
     };
     const tokens = await tokenService.generateToken({ ...userDto });
-    console.log(tokens);
+    
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }
@@ -35,7 +35,7 @@ class UserService {
     });
 
     const userPars = JSON.parse(JSON.stringify(user));
-    console.log('USERPARSEEEEE', userPars);
+    
     // const license = await License.findOne({ where: { userId: user.id}})
 
     if (!user) {
@@ -53,9 +53,7 @@ class UserService {
       avtoNum: userPars.Driver?.avto,
     };
 
-    console.log('====================================');
-    console.log(userDto);
-    console.log('====================================');
+    
     const tokens = await tokenService.generateToken({ ...userDto });
 
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
