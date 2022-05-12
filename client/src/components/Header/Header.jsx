@@ -33,9 +33,6 @@ function Header() {
       {user ? (
         <>
           <div className="slash">
-            <Link to="/role" className="nav-link fs-2">
-              Попутка
-            </Link>
             <div className="avatarName">
               <div className="avatar">
                 {avatar ? (
@@ -59,6 +56,9 @@ function Header() {
               </div>
             </div>
           </div>
+          <Link to="/role" className="nav-link fs-2">
+              Попутка
+            </Link>
           <Button variant="outline-success "  onClick={() => navigate('/personalAcc')}>
            Личный кабинет
           </Button>{" "}

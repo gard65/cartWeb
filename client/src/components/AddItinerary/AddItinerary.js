@@ -100,7 +100,7 @@ useEffect (() => {
         />
       </div>
       <div className="text-center">
-      <Button variant="outline-success my-5" >
+      <Button type='submit' variant="outline-success my-5" >
            Создать маршрут
           </Button>{" "}
       </div>

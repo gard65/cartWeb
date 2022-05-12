@@ -33,7 +33,7 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
   return (
     <div>
 
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} style={{display: "flex", "flex-direction": "column",  alignItems: "center"}}>
 
   {/* <div className="mb-3">
     <label htmlFor="exampleInputName1" className="form-label">Name</label>
@@ -113,7 +113,7 @@ import {THUNK_register } from "../../../redux/thunk/thunkRegistration";
    Woman
   </label> */}
 {/* </div> */}
-  <button type="submit" className="btn btn-primary">Submit</button>
+  <button type="submit" className="btn btn-primary">Зарегистрироваться</button>
 </form>
 
     </div>
