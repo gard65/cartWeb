@@ -33,9 +33,14 @@ class TokenService {
   }
 
   async removeToken(refreshToken) {
-    const currToken = await Token.findOne({ where: { refreshToken } });
-    currToken.destroy();
-    return currToken;
+    try {
+      const token = await Token.findOne({ where: { refreshToken } });
+      if (token) {
+        await Token.destroy({ where: { refreshToken } });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async findToken(refreshToken) {
