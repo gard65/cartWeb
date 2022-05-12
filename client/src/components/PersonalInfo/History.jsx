@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Table} from "react-bootstrap"
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function History(props) {
+  const [history, setHistory] = React.useState([])
+ 
+  const user = useSelector(s => s.user)
+  
+  useEffect (async()=>{
+    if (user?.id){
+      const res = await axios.get(`http://localhost:3001/route/history/${user.id}`)
+    setHistory(res.data)
+    }
+
+  }, [user])
+
+
+
   return (
 
 <>
+
 
       
     <div className='col-md-4 col-md-offset-4' >
@@ -15,43 +32,37 @@ function History(props) {
       <div className="d-grid gap-2">
         <table className="table table-striped">
           <thead className="table-primary">
+             
+
             <tr>
-              <th scope="col">id</th>
+              
               <th scope="col">Маршрут (Начало)</th>
               <th scope="col">Маршрут (Конец)</th>
               <th scope="col">Дата Поездки</th>
+
             </tr>
+              
           </thead>
           <tbody id="tbody"></tbody>
         </table>
       </div>
     <Table >
   <thead>
+  {
+    history && history.map(el =>
     <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
+      
+      <th>{el.Route?.pointA}</th>
+      <th>{el.Route?.pointB}</th>
+      <th>{el.Route?.time}</th>
+      {/* <th>{el.User?.name}</th> */}
+
     </tr>
+    )}
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td colSpan={2}>Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    
+    
   </tbody>
   </Table>
     </div>
