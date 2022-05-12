@@ -110,7 +110,7 @@ useEffect (() => {
       <>
         <p>
           Откуда : {el.Route.pointA} 
-        Куда : {el.Route.pointA} 
+        Куда : {el.Route.pointB} 
         Время: {el.Route.time}
         Кто нах: {el.User.name}
         </p>
