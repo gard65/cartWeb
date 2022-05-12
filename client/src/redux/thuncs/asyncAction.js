@@ -19,12 +19,19 @@ export const getMapStateFromDb = () => (dispatch) => {
   dispatch(getCoordinate(coordinatesArr));
 };
 export const addItineraryFromDb = (pointA, pointB) => async (dispatch) => {
+  console.log({pointA, pointB})
   const resPointA = await axios.get(
     `https://api.geotree.ru/address.php?term=${pointA}&limit=1`
   );
+  console.log('====================================');
+  console.log(resPointA);
+  console.log('====================================');
   const resPointB = await axios.get(
     `https://api.geotree.ru/address.php?term=${pointB}&limit=1`
-  );
+    );
+    console.log('====================================');
+    console.log(resPointB);
+    console.log('====================================');
 
   const pointStart = [
     resPointA.data[0].geo_center.lat,

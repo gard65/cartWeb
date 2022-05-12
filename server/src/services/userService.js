@@ -7,29 +7,33 @@ const {
 
 class UserService {
   async registration(name, email, telephone, password, gender, age) {
-    console.log('==========> reg');
+
     const candidate = await User.findOne({ where: { email } });
-console.log([candidate])
+    
+    
+
     if (candidate) {
       throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`);
+    }
+    if (candidate === null) {
+      throw ApiError.BadRequest('Заполните все поля');
     }
     const hashPassword = await bcrypt.hash(password, 8);
     const user = await User.create({
       name, email, telephone, age, gender, password: hashPassword,
     });
-    console.log('======USER=====', user);
+
     const userDto = {
       email: user.email, id: user.id,
     };
-    console.log('=====USER-DTO===', userDto);
+
     const tokens = await tokenService.generateToken({ ...userDto });
-    console.log('=====TOKEN===', tokens);
+
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }
 
   async login(email, password) {
-    console.log('=======> login');
     const user = await User.findOne({
       where: { email },
       include: [
@@ -38,11 +42,10 @@ console.log([candidate])
       ],
     });
 
-    console.log('======USER=====', user);
+
 
     const userPars = JSON.parse(JSON.stringify(user));
 
-    console.log('======USERPARS=====', userPars);
     if (!user) {
       throw ApiError.BadRequest('Пользователь с таким email не найден');
     }
@@ -59,11 +62,10 @@ console.log([candidate])
       avtoNum: userPars.Driver?.avto,
     };
 
-    console.log('=====USER-DTO===', userDto);
     const tokens = await tokenService.generateToken({ ...userDto });
 
-    console.log('=====TOKEN===', tokens);
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
     return { ...tokens, user: userDto };
   }
 

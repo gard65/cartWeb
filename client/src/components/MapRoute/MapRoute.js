@@ -36,14 +36,17 @@ export default function MapRoute() {
   return (
     <>
       {status ? (
-        <div className="d-flex justify-content-center mt-5">
-          <YMaps query={{ apikey }}>
+        <div className="d-flex justify-content-center mt-5" >
+          <YMaps query={{ apikey }} >
             <div className="align-middle">
-              <Map
+              <Map 
                 modules={["multiRouter.MultiRoute"]}
                 state={mapState}
                 instanceRef={map}
                 onLoad={addRoute}
+                width={"800px"}
+                height={"500px"}
+                border-radius={""}
               ></Map>
             </div>
           </YMaps>

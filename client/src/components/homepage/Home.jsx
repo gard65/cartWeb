@@ -32,14 +32,14 @@ function Home(props) {
           <Nav.Item>
             <Link
               to="/registration"
-              className="nav-link fs-1"
+              className="nav-link1 fs-1"
               eventKey="link-5"
             >
               Регистрация
             </Link>
           </Nav.Item>
           <Nav.Item>
-            <Link to="/login" className="nav-link fs-1" eventKey="link-6">
+            <Link to="/login" className="nav-link1 fs-1" eventKey="link-6">
               Авторизация
             </Link>
           </Nav.Item>
