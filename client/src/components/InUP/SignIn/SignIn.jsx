@@ -30,7 +30,7 @@ function SignIn() {
   if (!user) {
     return (
       <div>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} style={{display: "flex", "flex-direction": "column",  alignItems: "center"}}>
           <div className="mb-3 mt-4">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -58,7 +58,7 @@ function SignIn() {
             />
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            Войти
           </button>
         </form>
       </div>
