@@ -9,6 +9,7 @@ export const getMapStateFromDb = () => (dispatch) => {
     center: [55.75, 37.57],
     zoom: 10,
   };
+
   const coordinatesArr = [
     [55.684758, 37.738521],
     [55.758291, 37.740831],

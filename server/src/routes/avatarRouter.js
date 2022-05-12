@@ -20,7 +20,6 @@ router.route('/:id')
     try {
       const { id } = req.params;
       await Avatar.create({ ...req.body, userId: id, img: req.file.filename });
-      console.log(req.body, req.file);
       res.json(req.file);
     } catch (error) {
       console.log(error);

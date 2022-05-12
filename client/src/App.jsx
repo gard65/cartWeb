@@ -13,6 +13,7 @@ import AddItinerary from "./components/AddItinerary/AddItinerary"
 import Home from './components/homepage/Home';
 import { useSelector, useDispatch } from 'react-redux';
 import MapRoute from "./components/MapRoute/MapRoute"
+import WebSock from './components/WebSock/WebSock';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,6 @@ function App() {
     (localStorage.getItem('token')) && dispatch(THUNK_checkAuth())
   }
 , [])
-
 
   return (
     <div className="App container">
@@ -39,6 +39,7 @@ function App() {
           <Route path="/personalAcc" element={<PersonalAcc />} />
           {/* <Route path="/history" element={<History />} /> */}
           <Route path="/mapRouter" element={<MapRoute />} />
+          <Route path='/messanger' element={<WebSock/>}/>
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
