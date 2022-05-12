@@ -1,14 +1,24 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserRoleToState } from "../../redux/actions/userActions";
 function Role(props) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const user = useSelector((state) => state.user);
+
+  console.log("=====USER====>", user);
+  
 function selectHandler(isDriver){
-  dispatch(setUserRoleToState(isDriver))
-  navigate('/route')
+  if(user.passport === ""){
+    navigate('/personalAcc')
+  }else{
+
+    dispatch(setUserRoleToState(isDriver))
+    navigate('/route')
+  }
 }
   return (
     <div>

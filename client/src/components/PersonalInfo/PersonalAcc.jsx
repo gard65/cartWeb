@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import History from "./History";
-import { THUNK_editUserInfo, THUNK_getUserInfo } from '../../redux/thunk/thunkUserInfo'
+import {
+  THUNK_editUserInfo,
+  THUNK_getUserInfo,
+} from "../../redux/thunk/thunkUserInfo";
 import Avatar from "./Avatar/Avatar";
 
-import "./personal.css"
+import "./personal.css";
 // const divStile = {maxWidth:'700px',
 // height:'40vh'
 // }
 
-
-
 function PersonalAcc(props) {
   const user = useSelector((state) => state.user);
 
-  console.log(user);
+
 
   const [name, setName] = useState(user?.name);
   const [telephone, setTelephone] = useState(user?.telephone);
@@ -25,7 +26,6 @@ function PersonalAcc(props) {
   const [passport, setPassport] = useState(user?.passport);
   const [number, setNumber] = useState(user?.number);
   const [avto, setAvto] = useState(user?.avto);
-
 
   useEffect(() => {
     setName(user?.name);
@@ -37,7 +37,6 @@ function PersonalAcc(props) {
     setAvto(user?.avto);
   }, [user]);
 
-
   const dispatch = useDispatch();
 
   const nameHandler = (e) => setName(e.target.value);
@@ -47,8 +46,6 @@ function PersonalAcc(props) {
   const passportHandler = (e) => setPassport(e.target.value);
   const numberHandler = (e) => setNumber(e.target.value);
   const avtoHandler = (e) => setAvto(e.target.value);
-
-
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -62,32 +59,25 @@ function PersonalAcc(props) {
         number,
         avto,
         userId: user.id,
-      })
-    );
+      }));
+    dispatch(THUNK_getUserInfo(user?.id));
   };
 
   useEffect(() => {
     dispatch(THUNK_getUserInfo(user?.id));
   }, []);
- 
 
   return (
-
-      <div className="personAcc">
-    <div className="history">
-   
-    </div>
-          <Card style={{ width: '18rem' }}>
-        <ListGroup className="list-group-flush">
-          <form onSubmit={submitHandler}>
-
-  <Avatar />
-  <Card.Body>
-    <Card.Title>Card Title</Card.Title>
-    <Card.Text>
-      Some 
-    </Card.Text>
-  </Card.Body>
+    <div className="personAcc">
+      <div className="history"></div>
+      <form onSubmit={submitHandler}>
+        <Card style={{ width: "18rem" }}>
+          <ListGroup className="list-group-flush">
+            <Avatar />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Text>Some</Card.Text>
+            </Card.Body>
             <ListGroupItem>
               <div className="mb-3">
                 <label htmlFor="exampleInputName1" className="form-label">
@@ -118,7 +108,6 @@ function PersonalAcc(props) {
                 />
               </div>
             </ListGroupItem>
-
             <ListGroupItem>
               <div className="mb-3">
                 <label htmlFor="exampleInputAge1" className="form-label">
@@ -179,7 +168,6 @@ function PersonalAcc(props) {
                 />
               </div>
             </ListGroupItem>
-
             <ListGroupItem>
               <div className="mb-3">
                 <label htmlFor="exampleInputPassport1" className="form-label">
@@ -210,14 +198,12 @@ function PersonalAcc(props) {
                 />
               </div>
             </ListGroupItem>
-           
-            <button type="submit"> Сохранить</button>
-          </form>
-        </ListGroup>
-        <Card.Body>
-         
-        </Card.Body>
-      </Card>
+            <Button type="submit" variant="outline-success">
+              Сохранить
+            </Button>{" "}
+          </ListGroup>
+        </Card>
+      </form>
     </div>
   );
 }

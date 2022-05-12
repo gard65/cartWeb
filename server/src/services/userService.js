@@ -9,9 +9,14 @@ class UserService {
   async registration(name, email, telephone, password, gender, age) {
 
     const candidate = await User.findOne({ where: { email } });
-  
+    
+    
+
     if (candidate) {
       throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`);
+    }
+    if (candidate === null) {
+      throw ApiError.BadRequest('Заполните все поля');
     }
     const hashPassword = await bcrypt.hash(password, 8);
     const user = await User.create({

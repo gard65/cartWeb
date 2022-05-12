@@ -26,7 +26,6 @@ function Header() {
   };
   useEffect(async () => {
     if (user?.id) {
-      console.log(user.id);
       const res = await axios.get(`http://localhost:3001/avatar/${user.id}`);
       setAvatar(res.data?.img);
     }
@@ -84,12 +83,9 @@ function Header() {
           <Button variant="outline-success "  onClick={() => navigate('/personalAcc')}>
            Личный кабинет
           </Button>{" "}
-          <Button variant="outline-success " onClick={() => navigate('/role')}>
-            
-              Роль
-            
+          <Button variant="outline-success " onClick={() => navigate("/role")}>
+            Роль
           </Button>{" "}
-
             <Button
               variant="outline-success "
               onClick={logoutHandler}
