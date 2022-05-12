@@ -5,6 +5,7 @@ import { addItineraryFromDb, sendDateAndTime, THUNK_getRoutesFromDB } from "../.
 import { useNavigate } from "react-router-dom";
 import { postDateDepartAction } from "../../redux/actions/postDateDepartAction";
 import { postTimeDepartAction } from "../../redux/actions/postTimeDepartAction";
+import { Button } from "react-bootstrap";
 
 function AddItinerary() {
   const [valueWhence, setValueWhence] = useState();
@@ -99,9 +100,9 @@ useEffect (() => {
         />
       </div>
       <div className="text-center">
-        <button type="submit" className="btn btn-primary mt-5">
-          Подтвердить
-        </button>
+      <Button variant="outline-success my-5" >
+           Создать маршрут
+          </Button>{" "}
       </div>
     </form>
     <div>
@@ -109,7 +110,7 @@ useEffect (() => {
       <>
         <p>
           Откуда : {el.Route.pointA} 
-        Куда : {el.Route.pointA} 
+        Куда : {el.Route.pointB} 
         Время: {el.Route.time}
         Кто нах: {el.User.name}
         </p>

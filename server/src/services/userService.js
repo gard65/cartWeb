@@ -17,13 +17,13 @@ console.log([candidate])
     const user = await User.create({
       name, email, telephone, age, gender, password: hashPassword,
     });
-    console.log('======USER=====', user);
+  
     const userDto = {
       email: user.email, id: user.id,
     };
-    console.log('=====USER-DTO===', userDto);
+    
     const tokens = await tokenService.generateToken({ ...userDto });
-    console.log('=====TOKEN===', tokens);
+
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto };
   }
@@ -63,7 +63,8 @@ console.log([candidate])
     const tokens = await tokenService.generateToken({ ...userDto });
 
     console.log('=====TOKEN===', tokens);
-    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    const tekServ = await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    console.log("======TEKSERV", tekServ);
     return { ...tokens, user: userDto };
   }
 
