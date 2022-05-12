@@ -37,13 +37,14 @@ export default function MapRoute() {
     <>
       {status ? (
         <div className="d-flex justify-content-center mt-5">
-          <YMaps query={{ apikey }}>
+          <YMaps query={{ apikey }} >
             <div className="align-middle">
-              <Map
+              <Map 
                 modules={["multiRouter.MultiRoute"]}
                 state={mapState}
                 instanceRef={map}
                 onLoad={addRoute}
+                
               ></Map>
             </div>
           </YMaps>
