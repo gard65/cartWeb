@@ -111,6 +111,7 @@ class UserController {
   async getUserInfo(req, res, next) {
     try {
       const userId = Number(req.params.id);
+      // const avatar = await Avatar.findOne({ where: { userId}})
       const passport = await Documentation.findOne({ where: { userId } });
       const license = await License.findOne({ where: { userId } });
       const avto = await Driver.findOne({ where: { userId } });
@@ -119,6 +120,7 @@ class UserController {
       // res.json(user);
       res.json({
         ...user,
+        // avatar: avatar?.img,
         passport: passport?.passport,
         number: license?.number,
         avto: avto?.avto,
