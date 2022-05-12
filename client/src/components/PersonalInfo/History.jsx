@@ -54,7 +54,7 @@ function History(props) {
       
       <th>{el.Route?.pointA}</th>
       <th>{el.Route?.pointB}</th>
-      <th>{el.Route?.time}</th>
+      <th>{el.Route?.date.slice(0,10)}</th>
       {/* <th>{el.User?.name}</th> */}
 
     </tr>
