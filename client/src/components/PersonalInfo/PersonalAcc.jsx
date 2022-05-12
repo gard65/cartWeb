@@ -75,7 +75,7 @@ function PersonalAcc(props) {
 
       <div className="personAcc">
     <div className="history">
-      {/* <History/> */}
+   
     </div>
           <Card style={{ width: '18rem' }}>
         <ListGroup className="list-group-flush">
