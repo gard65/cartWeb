@@ -2,7 +2,6 @@ const {
   License, Documentation, Driver, User, Avatar,
 } = require('../../db/models');
 
-
 const userService = require('../services/userService');
 
 class UserController {
@@ -35,10 +34,10 @@ class UserController {
   async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      console.log("====EMAIL", email, password);
+      console.log('====EMAIL', email, password);
       const userData = await userService.login(email, password);
       console.log('====================================');
-      console.log("USERDATA", userData);
+      console.log('USERDATA', userData);
       console.log('====================================');
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -64,9 +63,8 @@ class UserController {
         avto,
         userId,
       } = req.body;
-      // await License.upsert({ userId, number });
-      // await Documentation.upsert({ userId, passport });
-      // await Driver.upsert({ userId, avto });
+
+      console.log('====REGBODY===', req.body);
 
       const user = await User.findByPk(userId);
       user.name = name;
@@ -75,36 +73,35 @@ class UserController {
       user.gender = gender;
       await user.save();
 
-      const passportNum = await Documentation.findOne({ where: { userId } });
+      let passportNum = await Documentation.findOne({ where: { userId } });
       if (passportNum) {
         passportNum.passport = passport;
         await passportNum.save();
       } else {
-        await Documentation.create({ passport, userId });
+        passportNum = await Documentation.create({ passport, userId });
       }
 
-      const license = await License.findOne({ where: { userId } });
+      let license = await License.findOne({ where: { userId } });
       if (license) {
         license.number = number;
 
         await license.save();
       } else {
-        await License.create({ number, userId });
+        license = await License.create({ number, userId });
       }
 
-      const avtoNum = await Driver.findOne({ where: { userId } });
+      let avtoNum = await Driver.findOne({ where: { userId } });
       if (avtoNum) {
         avtoNum.avto = avto;
         await avtoNum.save();
       } else {
-        await Driver.create({
+        avtoNum = await Driver.create({
           avto, userId,
         });
       }
-
-      // const numberFromDb = License.findOne({ where: { id: userId } });
-      // const passportFromDb = Documentation.findOne({ where: { id: userId } });
-      // const avtoFromDb = Driver.findOne({ where: { id: userId } });
+      console.log('====================================');
+      console.log(passportNum);
+      console.log('====================================');
       res.json({ passport: !!passportNum.passport, avtoNum: !!avtoNum.avto, driverLicense: !!license.number });
     } catch (error) {
       console.log(error);
@@ -151,9 +148,9 @@ class UserController {
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-      })
-      // .res.json(userData);
-      return await res.json(userData);
+      }).json(userData);
+
+      // return await res.json(userData);
     } catch (e) {
       next(e);
     }
