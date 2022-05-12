@@ -210,9 +210,8 @@ function PersonalAcc(props) {
                 />
               </div>
             </ListGroupItem>
-            <ListGroup></ListGroup>
-            <ListGroup></ListGroup>
-            <button type="submit"> dsds</button>
+           
+            <button type="submit"> Сохранить</button>
           </form>
         </ListGroup>
         <Card.Body>
