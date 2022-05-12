@@ -13,6 +13,7 @@ class TokenService {
   }
 
   async saveToken(userId, refreshToken) {
+
     console.log(userId, refreshToken);
 
     try {
@@ -23,6 +24,7 @@ class TokenService {
 
         return updatedToken;
       }
+
 
       const newToken = await Token.create({ refreshToken, userId });
 

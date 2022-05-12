@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Op } = require('sequelize');
 const { Route, UserRoute, User } = require('../../db/models');
 
 router.get('/:role', async (req, res) => {
@@ -60,4 +61,31 @@ router.route('/:id')
       console.log(error);
     }
   });
+
+router.get('/history/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const history = await UserRoute.findAll({
+
+      where: { userId: id },
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: Route,
+          where: { date: { [Op.lt]: new Date() } },
+        },
+      ],
+      // raw: true,
+    });
+    console.log("=======>", history);
+    console.log('.........', new Date());
+    res.json(history);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;
