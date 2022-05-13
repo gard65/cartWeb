@@ -148,7 +148,7 @@ function AddItinerary() {
         <hr className="fs-4 mt-5" />
 
         <div className="text-center">
-          <button type="submit" className="btn btn-primary mt-5">
+          <button type="submit" className="btn btn-outline-success  mt-5">
             Подтвердить
           </button>
         </div>
@@ -156,7 +156,7 @@ function AddItinerary() {
       <div>
         {routes?.map((el) => (
 
-          <div key={el.id} className="border rounded border-warning mt-3 py-3">
+          <div key={el.id} className="border rounded border-success mt-3 py-3">
             <h3>Маршрут №{el.Route.id}</h3>
             <p>Откуда : {el.Route.pointA}</p>
             <p>Куда : {el.Route.pointB}</p>
@@ -165,7 +165,7 @@ function AddItinerary() {
             <button
               onClick={() => goToChat(el.Route.id)}
               type="submit"
-              className="btn btn-outline-primary mt-5"
+              className="btn btn-outline-success  mt-5"
             >
               Перейти в чат
             </button>
