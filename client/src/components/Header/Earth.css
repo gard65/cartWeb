@@ -1,0 +1,87 @@
+.earthImg {
+  max-width: 15%;
+}
+.carImg {
+  max-width: 25%;
+}
+.parent__content {
+  position: absolute;
+  left: 35%;
+  top: 3%;
+}
+@keyframes circle{
+  0%{
+    transform:rotate(0deg) translate(-47px) rotate(270deg);
+  
+  }
+  100%{
+    transform:rotate(360deg) translate(-47px) rotate(270deg);
+  }
+}
+
+.circle{
+  width: 100px;
+  height: max-content;
+  position:absolute;
+  top:0;
+  bottom:0; 
+  left:0;
+  right:0;
+  overflow:hidden;
+  margin:auto;
+  transition: all .5s;
+  animation: circle 6s linear infinite;
+}
+
+.parent__right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 50%;
+  }
+
+@media (min-width: 768px) and (max-width: 1400px) {
+  @keyframes circle{
+    0%{
+      transform:rotate(0deg) translate(-47px) rotate(270deg);
+    
+    }
+    100%{
+      transform:rotate(360deg) translate(-47px) rotate(270deg);
+    }
+  }
+.parent__right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  @keyframes circle{
+    0%{
+      transform:rotate(0deg) translate(-47px) rotate(270deg);
+    
+    }
+    100%{
+      transform:rotate(360deg) translate(-47px) rotate(270deg);
+    }
+  }
+  .parent__content {
+    /* max-width: 1180px; */
+    margin: 0 auto;
+    display: flex;
+    position: absolute;
+  }
+.parent__right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 50%;
+  }
+
+}
