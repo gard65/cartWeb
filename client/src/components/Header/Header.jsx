@@ -9,6 +9,10 @@ import { Nav, Button } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import logoo from "../../components/PersonalInfo/Avatar/logoo.png";
+import greencar from './greencar.png'
+import earth from './Globe_logo.png'
+import './Earth.css'
+
 
 function Header() {
   const [avatar, setAvatar] = useState("");
@@ -28,13 +32,15 @@ function Header() {
   }, [user]);
 
   return (
+    <>
+    {/* <div> <Link to="/role" className="nav-link fs-2">
+    Попутка
+  </Link>  
+  </div> */}
     <div className="header">
       {user ? (
         <>
           <div className="slash">
-            <Link to="/role" className="nav-link fs-2">
-              Попутка
-            </Link>
             <div className="avatarName">
               <div className="avatar">
                 {avatar ? (
@@ -58,15 +64,28 @@ function Header() {
               </div>
             </div>
           </div>
+          {/* <Link to="/role" className="nav-link fs-2">
+              Попутка
+            </Link> */}
+            <div className="parent">
+              <div className="parent__content" style={{position:'absolute', left: '32.5%', top: '11%'}} >
+                <div className="parent__right">
+                  <div className="parent__img">
+                  <img className="earthImg" src={`${earth}`} alt="earth" />
+                  </div>
+                <div className="circle">
+                <img className="carImg" src={`${greencar}`} alt="greencar" />
+                </div>
+            </div>
+        </div>
+    </div>
+            <div style={{display:"flex"}}>
           <Button variant="outline-success "  onClick={() => navigate('/personalAcc')}>
            Личный кабинет
           </Button>{" "}
-          <Button variant="outline-success " onClick={() => navigate('/role')}>
-            
-              Роль
-            
+          <Button variant="outline-success " onClick={() => navigate("/role")}>
+            Роль
           </Button>{" "}
-
             <Button
               variant="outline-success "
               onClick={logoutHandler}
@@ -75,7 +94,7 @@ function Header() {
             >
               Выход
             </Button>
-         
+            </div>
         </>
       ) : (
         <>
@@ -85,6 +104,7 @@ function Header() {
         </>
       )}
     </div>
+    </>
   );
 }
 

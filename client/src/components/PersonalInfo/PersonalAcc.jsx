@@ -74,19 +74,15 @@ function PersonalAcc(props) {
     <div className="history">
       <History/>
     </div>
-          <Card style={{ width: '18rem' }}>
+    
+          <Card style={{ height: '18rem' }}> </Card>
         <ListGroup className="list-group-flush">
           <form onSubmit={submitHandler}>
 
   <Avatar />
-  <Card.Body>
-    <Card.Title>Card Title</Card.Title>
-    <Card.Text>
-      Some 
-    </Card.Text>
-  </Card.Body>
+ 
             <ListGroupItem>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="exampleInputName1" className="form-label">
                   ФИО
                 </label>
@@ -215,7 +211,7 @@ function PersonalAcc(props) {
         <Card.Body>
          
         </Card.Body>
-      </Card>
+     
     </div>
   );
 }

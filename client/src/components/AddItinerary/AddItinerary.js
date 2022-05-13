@@ -9,18 +9,22 @@ import {
 import { useNavigate } from "react-router-dom";
 import { postDateDepartAction } from "../../redux/actions/postDateDepartAction";
 import { postTimeDepartAction } from "../../redux/actions/postTimeDepartAction";
+
 import { addMemberReducer } from "../../redux/reducers/addMemberReducer";
 import { addRouteAction } from "../../redux/actions/addMemberUserAction";
 import Main from "../Main/Main";
 // import{Main} from "./Main/Main"
+
 function AddItinerary() {
   const [valueWhence, setValueWhence] = useState();
   const [whereValue, setWhereValue] = useState();
   const [dateValue, setDateValue] = useState();
   const [timeValue, setTimeValue] = useState();
+
   const { id, isDriver } = useSelector((state) => state.user || {});
   const routes = useSelector((state) => state.routes);
   const currentUserId = useSelector((state) => state.user?.id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function inputWhence(e) {
@@ -56,6 +60,7 @@ function AddItinerary() {
     );
     navigate("/mapRouter");
   }
+
   function goToChat(id) {
     dispatch({ type: "SELECT_ROUTE_CHAT", payload: id });
     navigate("/messanger");
@@ -77,6 +82,7 @@ function AddItinerary() {
       <form onSubmit={sendValue} type="submit" className="row g-3">
         <div className="col-md-6">
           <label htmlFor="whence" className="form-label fs-4 my-2">
+
             Откуда
           </label>
           <input
@@ -89,7 +95,9 @@ function AddItinerary() {
           />
         </div>
         <div className="col-md-6">
+
           <label htmlFor="where" className="form-label fs-4 my-2">
+
             Куда
           </label>
           <input
@@ -101,14 +109,18 @@ function AddItinerary() {
             value={whereValue ? whereValue : ""}
           />
         </div>
+
         <hr className="fs-4 mt-5" />
         <div className="col-md-6">
           <label htmlFor="whence" className="form-label fs-4 my-2">
+
             Дата отправления
           </label>
           <input
             onChange={dateDeparture}
+
             type="date"
+
             className="form-control"
             id="whence"
             placeholder="Введите дату отправления"
@@ -116,19 +128,25 @@ function AddItinerary() {
           />
         </div>
         <div className="col-md-6">
+
           <label htmlFor="where" className="form-label fs-4 my-2">
+
             Время отправления
           </label>
           <input
             onChange={timeDeparture}
+
             type="time"
+
             className="form-control"
             id="where"
             placeholder="Введите время отправления"
             value={timeValue ? timeValue : ""}
           />
         </div>
+
         <hr className="fs-4 mt-5" />
+
         <div className="text-center">
           <button type="submit" className="btn btn-primary mt-5">
             Подтвердить
@@ -137,6 +155,7 @@ function AddItinerary() {
       </form>
       <div>
         {routes?.map((el) => (
+
           <div key={el.id} className="border rounded border-warning mt-3 py-3">
             <h3>Маршрут №{el.Route.id}</h3>
             <p>Откуда : {el.Route.pointA}</p>
@@ -157,6 +176,7 @@ function AddItinerary() {
                 >зарегистрироваться
                 </button> */}
           </div>
+
         ))}
       </div>
     </>

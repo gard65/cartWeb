@@ -13,22 +13,36 @@ class TokenService {
   }
 
   async saveToken(userId, refreshToken) {
-    const tokenData = await Token.findOne({ where: { userId } });
-    if (tokenData) {
-      const updatedToken = await Token.update({ refreshToken }, { where: { userId } });
-          return updatedToken;
-    }
-    const newToken = await Token.create({ refreshToken, userId });
 
-    return newToken
+    console.log('====================================');
+    console.log(userId, refreshToken);
+    console.log('====================================');
+    try {
+      const tokenData = await Token.findOne({ where: { userId } });
+      console.log('TOKENDATAAAA', tokenData);
+      if (tokenData) {
+        const updatedToken = await Token.update({ refreshToken }, { where: { userId } });
+        console.log('TOKENupdatedTokenDATAAAA', updatedToken);
+        return updatedToken;
+      }
+      const newToken = await Token.create({ refreshToken, userId });
+
+      return newToken;
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   async removeToken(refreshToken) {
-    
-
-    const currToken = await Token.findOne({ where: { refreshToken } });
-     currToken.destroy();
-    return currToken;
+    try {
+      const token = await Token.findOne({ where: { refreshToken } });
+      if (token) {
+        await Token.destroy({ where: { refreshToken } });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async findToken(refreshToken) {

@@ -44,8 +44,10 @@ export default function MapRoute() {
                 state={mapState}
                 instanceRef={map}
                 onLoad={addRoute}
-                width={"750px"}
-                height={"750px"}
+
+                width={"800px"}
+                height={"500px"}
+
               ></Map>
             </div>
           </YMaps>

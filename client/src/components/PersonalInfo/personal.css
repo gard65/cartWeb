@@ -3,3 +3,12 @@
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+/* .list-group {
+  display: flex;
+    flex-direction:column-reverse;
+    padding-left: 15px;
+    margin-bottom: 10;
+    border-radius: 0.25rem;
+    align-items: flex-start
+  
+} */
