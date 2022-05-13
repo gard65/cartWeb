@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ACTION_setUser } from '../../../redux/actions/userActions';
 import { THUNK_getUserInfo } from '../../../redux/thunk/thunkUserInfo';
+import { Button, Form} from "react-bootstrap";
 
 function Avatar() {
   const [img, setImg] = React.useState(null)
@@ -43,7 +44,7 @@ function Avatar() {
   }, [img])
 
   return (
-    <div className='PersonalAcc'>
+
       <div className="avatar">
         {
           avatar
@@ -51,11 +52,15 @@ function Avatar() {
           : <img className="logo" src={`${logoo}`} alt="avatar" />
         
         }
-
+  <Form.Group controlId="formFile" className="mb-3">
+    <Form.Label>{user?.name}</Form.Label>
+    
+    <Form.Control type="file" size="sm" className='inputAva'  onChange={e => setImg(e.target.files[0])} />
+  </Form.Group>
+      {/* <input type="file"  onChange={e => setImg(e.target.files[0])} /> */}
+      <Button className='btn1' variant="outline-success " onClick={sendFile}>Изменить аватар</Button>
       </div>
-      <input type="file" onChange={e => setImg(e.target.files[0])} />
-      <button className='btn' onClick={sendFile}>Изменить аватар</button>
-    </div>
+    
   );
 }
 

@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserRoleToState } from "../../redux/actions/userActions";
+import './role.css'
 function Role(props) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -11,14 +12,14 @@ function selectHandler(isDriver){
   navigate('/route')
 }
   return (
-    <div>
+    <div className="roller">
       <h2>Поедешь или повезешь?</h2>
-      <div className="role">
+      <div className="role mt-5">
         <div className="drive">
-          <Button onClick={ () => selectHandler(false) } variant="outline-success">Пассажир?</Button>{" "}
+          <Button onClick={ () => selectHandler(false) }  size="lg" variant="outline-success">Пассажир?</Button>{" "}
         </div>
         <div className="carry">
-          <Button onClick={ () => selectHandler(true) } variant="outline-success">Водитель?</Button>{" "}
+          <Button onClick={ () => selectHandler(true) }  size="lg" variant="outline-success">Водитель?</Button>{" "}
         </div>
       </div>
     </div>
