@@ -33,10 +33,10 @@ function Header() {
 
   return (
     <>
-    <div> <Link to="/role" className="nav-link fs-2">
+    {/* <div> <Link to="/role" className="nav-link fs-2">
     Попутка
   </Link>  
-  </div>
+  </div> */}
     <div className="header">
       {user ? (
         <>
