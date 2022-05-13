@@ -1,29 +1,30 @@
 const {
-  License, Documentation, Driver, User, Avatar,
-} = require('../../db/models');
+  License,
+  Documentation,
+  Driver,
+  User,
+  Avatar,
+} = require("../../db/models");
 
-
-const userService = require('../services/userService');
+const userService = require("../services/userService");
 
 class UserController {
   async registration(req, res, next) {
     try {
-      const {
-        name, email, telephone, password, gender, age,
-      } = req.body;
+      const { name, email, telephone, password, gender, age } = req.body;
       const userData = await userService.registration(
         name,
         email,
         telephone,
         password,
         gender,
-        age,
+        age
       );
 
-      res.cookie('refreshToken', userData.refreshToken, {
+      res.cookie("refreshToken", userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: 'none',
+        sameSite: "none",
         secure: true,
       });
       return res.json(userData);
@@ -36,13 +37,16 @@ class UserController {
     try {
       const { email, password } = req.body;
       const userData = await userService.login(email, password);
-      
-      res.cookie('refreshToken', userData.refreshToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true,
-      }).json(userData);
+
+      res
+        .cookie("refreshToken", userData.refreshToken, {
+          maxAge: 30 * 24 * 60 * 60 * 1000,
+          httpOnly: true,
+          sameSite: "none",
+          secure: true,
+        })
+        .json(userData);
+
       // return res.json(userData);
     } catch (e) {
       next(e);
@@ -51,16 +55,8 @@ class UserController {
 
   async editUserInfo(req, res, next) {
     try {
-      const {
-        name,
-        telephone,
-        age,
-        gender,
-        passport,
-        number,
-        avto,
-        userId,
-      } = req.body;
+      const { name, telephone, age, gender, passport, number, avto, userId } =
+        req.body;
       // await License.upsert({ userId, number });
       // await Documentation.upsert({ userId, passport });
       // await Driver.upsert({ userId, avto });
@@ -95,14 +91,19 @@ class UserController {
         await avtoNum.save();
       } else {
         await Driver.create({
-          avto, userId,
+          avto,
+          userId,
         });
       }
 
       // const numberFromDb = License.findOne({ where: { id: userId } });
       // const passportFromDb = Documentation.findOne({ where: { id: userId } });
       // const avtoFromDb = Driver.findOne({ where: { id: userId } });
-      res.json({ passport: !!passportNum.passport, avtoNum: !!avtoNum.avto, driverLicense: !!license.number });
+      res.json({
+        passport: !!passportNum.passport,
+        avtoNum: !!avtoNum.avto,
+        driverLicense: !!license.number,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +115,10 @@ class UserController {
       const passport = await Documentation.findOne({ where: { userId } });
       const license = await License.findOne({ where: { userId } });
       const avto = await Driver.findOne({ where: { userId } });
-      const user = await User.findByPk(userId, { raw: true, attributes: { exclude: ['email', 'password', 'id'] } });
+      const user = await User.findByPk(userId, {
+        raw: true,
+        attributes: { exclude: ["email", "password", "id"] },
+      });
       // user.passport = passport.passport;
       // res.json(user);
       res.json({
@@ -133,7 +137,7 @@ class UserController {
       const { refreshToken } = req.cookies;
 
       const token = await userService.logout(refreshToken);
-      res.clearCookie('refreshToken');
+      res.clearCookie("refreshToken");
       res.json(token);
     } catch (e) {
       next(e);
@@ -145,7 +149,7 @@ class UserController {
       const { refreshToken } = req.cookies;
       const userData = await userService.refresh(refreshToken);
 
-      res.cookie('refreshToken', userData.refreshToken, {
+      res.cookie("refreshToken", userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
       });

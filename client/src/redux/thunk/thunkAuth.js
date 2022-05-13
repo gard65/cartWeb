@@ -25,7 +25,7 @@ export const THUNK_login = (userData) => async (dispatch) => {
    
       dispatch(ACTION_setUser({...response.data.user}))
       dispatch(ACTION_isAuth())
-      // dispatch(THUNK_getPlayerFromDb(response.data.user.id))
+    //   dispatch(THUNK_getPlayerFromDb(response.data.user.id))
       // dispatch(ACTION_unSetLoader())
   } catch (e) {
       console.log(e)

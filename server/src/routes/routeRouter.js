@@ -18,7 +18,6 @@ router.get('/:role', async (req, res) => {
         },
       ],
     });
-    console.log('routes', routes);
     res.json(routes);
   } catch (error) {
     console.log(error);

@@ -18,18 +18,18 @@ function Main() {
       <YMaps>
         <div>
           <div className="d-flex justify-content-center mt-5">
-            <Map defaultState={mapState}>
+            <Map defaultState={mapState} width={"950px"} height={"400px"}>
               {coordinates.map((coordinate) => (
                 <Placemark key={uuidv4()} geometry={coordinate} />
               ))}
             </Map>
           </div>
           <div className="d-grid gap-2 col-2 mx-auto">
-            <Link to="/route">
+            {/* <Link to="/route">
               <button className="btn btn-outline-success my-3" type="button">
                 Создать маршрут
               </button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </YMaps>
