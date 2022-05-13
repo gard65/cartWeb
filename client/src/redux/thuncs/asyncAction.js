@@ -3,6 +3,7 @@ import { getCoordinate } from "../actions/coordinateActions";
 import axios from "axios";
 import { getPointStartAction } from "../actions/pointRouteStartAction";
 import { getPointFinishAction } from "../actions/pointRouteFinishAction";
+import { setRoutesToState } from "../actions/routeActions";
 
 export const getMapStateFromDb = () => (dispatch) => {
   const mapStateObj = {
@@ -22,9 +23,10 @@ export const addItineraryFromDb = (pointA, pointB) => async (dispatch) => {
   const resPointA = await axios.get(
     `https://api.geotree.ru/address.php?term=${pointA}&limit=1`
   );
+
   const resPointB = await axios.get(
     `https://api.geotree.ru/address.php?term=${pointB}&limit=1`
-  );
+    );
 
   const pointStart = [
     resPointA.data[0].geo_center.lat,
@@ -38,11 +40,17 @@ export const addItineraryFromDb = (pointA, pointB) => async (dispatch) => {
   dispatch(getPointFinishAction(pointFinish));
 };
 export const sendDateAndTime =
-  (dateDepart, timeDepart, pointA, pointB) => async () => {
+  (dateDepart, timeDepart, pointA, pointB, userId, isDriver) => async () => {
     await axios.post(`http://localhost:3001/route`, {
       time: timeDepart,
       date: dateDepart,
       pointA,
       pointB,
+      userId,
+      isDriver
     });
   };
+export const THUNK_getRoutesFromDB = (isDriver)=> async (dispatch) => {
+  const routes = await axios.get(`http://localhost:3001/route/${!isDriver}`)
+  dispatch(setRoutesToState(routes.data))
+}

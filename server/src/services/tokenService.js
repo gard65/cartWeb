@@ -16,22 +16,18 @@ class TokenService {
     const tokenData = await Token.findOne({ where: { userId } });
     if (tokenData) {
       const updatedToken = await Token.update({ refreshToken }, { where: { userId } });
-      console.log('updateToken------>', updatedToken);
-
-      const token = await Token.create({ where: { updatedToken } });
-
-      return updatedToken;
+          return updatedToken;
     }
-    const newToken = await Token.create({ refreshToken });
+    const newToken = await Token.create({ refreshToken, userId });
 
-    return newToken;
+    return newToken
   }
 
   async removeToken(refreshToken) {
-    console.log('refreshToken==>', refreshToken);
+    
 
     const currToken = await Token.findOne({ where: { refreshToken } });
-    await currToken.destroy();
+     currToken.destroy();
     return currToken;
   }
 

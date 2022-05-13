@@ -14,10 +14,10 @@ function Avatar() {
   const dispatch = useDispatch();
 
   useEffect (async()=>{
-    if (user.id){
+    if (user?.id){
 
       const res = await axios.get(`http://localhost:3001/avatar/${user.id}`)
-      setAvatar(res.data.img)
+      setAvatar(res.data?.img)
     }
 
   }, [user])

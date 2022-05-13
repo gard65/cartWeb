@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useEffect} from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import {THUNK_checkAuth} from "./redux/thunk/thunkAuth";
 import Header from './components/Header/Header'
 import SignUp from './components/InUP/SignUp/SignUp';
@@ -17,9 +17,7 @@ import WebSock from './components/WebSock/WebSock';
 
 function App() {
   const dispatch = useDispatch();
-  // const isUser = useSelector(state => state.user)
-
-  // console.log(isUser, "isUser")
+  const location = useLocation()
 
   useEffect(() => {
     (localStorage.getItem('token')) && dispatch(THUNK_checkAuth())
@@ -27,17 +25,20 @@ function App() {
 , [])
 
   return (
-    <div className="App container">
-      <Header />
+    <div className="App">
+      {location.pathname === "/" ? null : <Header />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/registration" element={<SignUp />} />
+      </Routes>
       <div className="container">
         <Routes>
           <Route path="/home" element={<Main />} />
-          <Route path="/registration" element={<SignUp />} />
-          <Route path="/login" element={<SignIn />} />
           <Route path="/role" element={<Role />} />
           <Route path="/route" element={<AddItinerary />} />
           <Route path="/personalAcc" element={<PersonalAcc />} />
-          {/* <Route path="/history" element={<History />} /> */}
           <Route path="/mapRouter" element={<MapRoute />} />
           <Route path='/messanger' element={<WebSock/>}/>
           <Route path="/" element={<Home />} />

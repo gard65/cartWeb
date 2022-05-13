@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
-import styles from "./style.module.css"
+import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import styles from "./style.module.css";
 
 const WebSock = () => {
   const [messages, setMessages] = useState([]);
@@ -7,21 +8,30 @@ const WebSock = () => {
   const socket = useRef();
   const [connected, setConnected] = useState(false); //Отображает состояние подключения
   const [username, setUsername] = useState(""); // Устанавливаем state для пользователя
+  const currentUserId = useSelector((state) => state.user?.id);
+  const curentUserName = useSelector((state) => state.user?.name);
+  const currentChatRouteId = useSelector((state) => state.selectedRoute);
 
+  useEffect(() => {
+    connect();
+  }, []);
   function connect() {
     socket.current = new WebSocket("ws://localhost:3002"); //Протокол WebSocket
-    socket.current.onopen = () => {// Отрабатывает в момент подключенния
+    socket.current.onopen = () => {
+      // Отрабатывает в момент подключенния
       setConnected(true);
       const message = {
         event: "connection",
-        username,
-        id: Date.now(),
+        curentUserName,
+        id: currentUserId,
       };
       socket.current.send(JSON.stringify(message)); //Отправляем на сервер клиента
     };
-    socket.current.onmessage = (event) => { // Отрабатывает при получении сообщения
+    socket.current.onmessage = (event) => {
+      // Отрабатывает при получении сообщения
       const message = JSON.parse(event.data);
-      setMessages((prev) => [message, ...prev]); //Принимаем сообщение
+      setMessages((prev) => [message, ...prev]);
+      console.log("message", message); //Принимаем сообщение
     };
     socket.current.onclose = () => {
       //Отрабатывает при закрытии подключения
@@ -34,31 +44,33 @@ const WebSock = () => {
 
   const sendMessage = async () => {
     const message = {
-      username,
+      curentUserName,
       message: value,
-      id: Date.now(),
+      id: currentUserId,
       event: "message",
+      currentChatRouteId,
     };
+    console.log({ message });
     socket.current.send(JSON.stringify(message)); //Отправляем сообщение на сервер
     setValue("");
   };
 
-  if (!connected) {
-    // Изменяем разметку при отсутствии подключения
-    return (
-      <div className={styles.center}>
-        <div className={styles.form}>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            type="text"
-            placeholder="Введите ваше имя"
-          />
-          <button onClick={connect}>Войти</button>
-        </div>
-      </div>
-    );
-  }
+  // if (!connected) {
+  //   // Изменяем разметку при отсутствии подключения
+  //   return (
+  //     <div className={styles.center}>
+  //       <div className={styles.form}>
+  //         <input
+  //           value={username}
+  //           onChange={(e) => setUsername(e.target.value)}
+  //           type="text"
+  //           placeholder="Введите ваше имя"
+  //         />
+  //         <button onClick={connect}>Войти</button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={styles.center}>

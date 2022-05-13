@@ -3,8 +3,14 @@ import { Table} from "react-bootstrap"
 
 function History(props) {
   return (
+
 <>
- <div className="container my-5">
+
+      
+    <div className='col-md-4 col-md-offset-4' >
+
+    <div className="container my-5">
+
     <h2 className="my-5">История поездок</h2>
       <div className="d-grid gap-2">
         <table className="table table-striped">
@@ -19,10 +25,6 @@ function History(props) {
           <tbody id="tbody"></tbody>
         </table>
       </div>
-      
-    <div >
-
-    <div className='col-md-4 col-md-offset-4' >
     <Table >
   <thead>
     <tr>
@@ -51,11 +53,11 @@ function History(props) {
       <td>@twitter</td>
     </tr>
   </tbody>
-</Table>
+  </Table>
     </div>
 
     </div>
-    </div>
+  
 </>
    
   );

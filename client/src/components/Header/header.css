@@ -1,6 +1,21 @@
+.bg-success{
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-around
+}
 .collapse{
   display: flex;
   justify-content: flex-end;
+}
+.nav-tabs{
+  border: none;
 }
 
 .logo1{
@@ -8,8 +23,19 @@
   height: 100px;
   border-radius: 50%; 
 }
-.nav-link{
-  color: aliceblue;
-  font-size: larger;
 
+.nav-link{
+ text-decoration: none;
+  color: rgb(54,176,32,1);
+  /* font-size: larger; */
+
+}
+.slash{
+
+  display: flex;
+  align-items: center;
+}
+
+.btn-outline-success{
+  border-color: white;
 }
