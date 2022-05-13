@@ -4,7 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { THUNK_register } from "../../../redux/thunk/thunkRegistration";
-
+import './signUp.css'
 function SignUp() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -29,8 +29,9 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <form
+    <div className="sign" >
+      <form 
+      
         onSubmit={submitHandler}
         style={{
           display: "flex",

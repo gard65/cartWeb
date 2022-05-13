@@ -8,6 +8,9 @@
   z-index: 10;
   position: relative;
 }
+.nav-link{
+  color: #FFF;
+}
 /* .block{
   background:0 0/auto auto no-repeat;
   } */

@@ -34,6 +34,7 @@ function Home(props) {
               to="/registration"
               className="nav-link fs-1"
               eventKey="link-5"
+              color = "white"
             >
               Регистрация
             </Link>

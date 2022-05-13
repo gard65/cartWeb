@@ -33,10 +33,10 @@ function Header() {
 
   return (
     <>
-    <div> <Link to="/role" className="nav-link fs-2">
+    {/* <div> <Link to="/" className="nav-link fs-2">
     Попутка
-  </Link>  
-  </div>
+  </Link>   */}
+  {/* </div> */}
     <div className="header">
       {user ? (
         <>
@@ -68,7 +68,7 @@ function Header() {
               Попутка
             </Link> */}
             <div className="parent">
-              <div className="parent__content" style={{position:'absolute', left: '32.5%', top: '11%'}} >
+              <div className="parent__content" style={{position:'absolute', left: '32.5%', top: '3%'}} >
                 <div className="parent__right">
                   <div className="parent__img">
                   <img className="earthImg" src={`${earth}`} alt="earth" />
@@ -89,7 +89,7 @@ function Header() {
             <Button
               variant="outline-success "
               onClick={logoutHandler}
-              className="nav-link fs-4"
+              className="nav1-link fs-4"
               eventKey="link-7"
             >
               Выход
@@ -97,11 +97,11 @@ function Header() {
             </div>
         </>
       ) : (
-        <>
-          <Link to="/" className="nav-link fs-3 d-box">
+        
+          <Link to="/" className="nav-link-pop fs-3 d-box">
             Попутка
           </Link>
-        </>
+        
       )}
     </div>
     </>

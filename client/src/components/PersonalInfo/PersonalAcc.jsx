@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { ButtonGroup, Card, Form, ListGroup, ListGroupItem, ToggleButton } from "react-bootstrap";
+import { ButtonGroup, FormGroup, Card, Form, ListGroup, ListGroupItem, ToggleButton, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import History from "./History";
 import { THUNK_editUserInfo, THUNK_getUserInfo } from '../../redux/thunk/thunkUserInfo'
@@ -72,21 +72,51 @@ function PersonalAcc(props) {
  
 
   return (
+<>
 
-    <>
+    <div className="allInfo">
+      <History/>
+  
+
     <div className="personallAc">
-      <Form  onSubmit={submitHandler}>
+     <Form onSubmit={submitHandler} className="mt-5 per">
+    <div>
+      <Avatar/>
+    </div>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
-
-   
-    <div className="form-check">
+    
+     <Form.Group className="mb-1" controlId="formBasicEmail">
+            <Form.Label> Фамилия Имя</Form.Label>
+            <Form.Control
+              type="text"
+              
+              onChange={nameHandler}
+              value={name}
+            />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+     <Form.Group className="mb-1" controlId="formBasicNumber">
+            <Form.Label> Номер Телефона</Form.Label>
+            <Form.Control
+              type="text"
+           
+              onChange={telephoneHandler}
+              value={telephone}
+              />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+     <Form.Group className="mb-1" controlId="formBasicAge">
+            <Form.Label> Возраст</Form.Label>
+            <Form.Control
+              type="text"
+          
+              onChange={ageHandler}
+              value={age}
+              />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+          <ListGroupItem>
+              <div className="form-check">
                 <input
                   className="form-check-input"
                   type="radio"
@@ -114,20 +144,45 @@ function PersonalAcc(props) {
                   Ж
                 </label>
               </div>
+            </ListGroupItem>
+          <Form.Group className="mb-1" controlId="formBasicPas">
+            <Form.Label> Номер Паспорта</Form.Label>
+            <Form.Control
+              type="text"
+            
+              onChange={passportHandler}
+              value={passport}
+              />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-1" controlId="formBasicNumLi">
+            <Form.Label> Водительское Удостоверение</Form.Label>
+            <Form.Control
+              type="text"
+              
+              onChange={numberHandler}
+              value={number}
+              />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-1" controlId="formBasicAvto">
+            <Form.Label> Номер Автомобиля</Form.Label>
+            <Form.Control
+            
+              type="text"
+            
+              onChange={avtoHandler}
+              value={avto}
+              />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+          <button type="submit" id="but" class="btn btn-outline-success">Сохранить</button>
+          </Form>
+          </div>
+  </div>
+              </>
 
-    <Form.Control placeholder="Disabled input" disabled />
-    <Form.Label>Номер паспорта</Form.Label>
-    <Form.Control placeholder="Disabled input" disabled />
-    <Form.Label>Водительское удостоверение</Form.Label>
-    <Form.Control placeholder="Disabled input" disabled />
-    <Form.Label>Номер автомобиля</Form.Label>
-    <Form.Control placeholder="Disabled input" disabled />
-  </Form.Group>
-  
- 
-      </Form>
-    </div>
-</>
+
 
 /* <>
     <div className="history">
@@ -161,7 +216,7 @@ function PersonalAcc(props) {
               </div>
             </ListGroupItem>
             <ListGroupItem>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="exampleInputNumber1" className="form-label">
                   Номер Телефона
                 </label>
@@ -177,7 +232,7 @@ function PersonalAcc(props) {
             </ListGroupItem>
 
             <ListGroupItem>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="exampleInputAge1" className="form-label">
                   Возраст
                 </label>
@@ -222,7 +277,7 @@ function PersonalAcc(props) {
               </div>
             </ListGroupItem>
             <ListGroupItem>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="exampleInputPassport1" className="form-label">
                   Номер паспорта
                 </label>
@@ -238,7 +293,7 @@ function PersonalAcc(props) {
             </ListGroupItem>
 
             <ListGroupItem>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="exampleInputPassport1" className="form-label">
                   Водительское удостоверение
                 </label>
@@ -253,7 +308,7 @@ function PersonalAcc(props) {
               </div>
             </ListGroupItem>
             <ListGroupItem>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="exampleInputPassport1" className="form-label">
                   Номер автомобиля
                 </label>

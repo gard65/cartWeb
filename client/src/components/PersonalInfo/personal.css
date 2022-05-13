@@ -1,8 +1,49 @@
-.personAcc{
+.personallAc{
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
+  margin-top: 50px;
+  flex-direction: row;
+  align-items: center;
+  align-content: flex-start;
 }
+
+.allInfo{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+  align-content: center;
+
+  box-shadow: #00000061 0px 2px 4px 2px;
+  border-radius: 20px;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 30px;
+}
+  .form-check-input:checked {
+    background-color: rgb(54,176,32,1);
+    border-color: rgb(54,176,32,1);
+}
+#but{
+  color: aliceblue;
+}
+.mb-1{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-group-item{
+  display: flex;
+  justify-content: space-around;
+  /* width: max-content; */
+  background-color: rgba(54, 176, 32, 0.0);
+  border: none;
+}
+.form-control{
+  width: auto;
+  /* appearance: none; */
+} 
 /* .list-group {
   display: flex;
     flex-direction:column-reverse;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { THUNK_login } from "../../../redux/thunk/thunkAuth";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
+import './SignIn.css'
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function SignIn() {
 
   if (!user) {
     return (
-      <div>
+      <div className="siIn">
         <form
           onSubmit={submitHandler}
           style={{
