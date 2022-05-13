@@ -160,7 +160,7 @@ function AddItinerary() {
             <h3>Маршрут №{el.Route.id}</h3>
             <p>Откуда : {el.Route.pointA}</p>
             <p>Куда : {el.Route.pointB}</p>
-            <p>Дата отправления : {el.Route.date}</p>
+            <p>Дата отправления : {el.Route.date.slice(0,10)}</p>
             <p>Время отправления : {el.Route.time}</p>
             <button
               onClick={() => goToChat(el.Route.id)}
