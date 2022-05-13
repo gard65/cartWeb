@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { ButtonGroup, Card, Form, ListGroup, ListGroupItem, ToggleButton } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import History from "./History";
 import { THUNK_editUserInfo, THUNK_getUserInfo } from '../../redux/thunk/thunkUserInfo'
@@ -73,16 +73,77 @@ function PersonalAcc(props) {
 
   return (
 
-      <div className="personAcc">
+    <>
+    <div className="personallAc">
+      <Form  onSubmit={submitHandler}>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+    <Form.Label>Email address</Form.Label>
+    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Text className="text-muted">
+      We'll never share your email with anyone else.
+    </Form.Text>
+  </Form.Group>
+
+   
+    <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  onChange={genderHandler}
+                  value={"М"}
+                  checked={gender === "М"}
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                  М
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                  onChange={genderHandler}
+                  value={"Ж"}
+                  checked={gender === "Ж"}
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault2">
+                  Ж
+                </label>
+              </div>
+
+    <Form.Control placeholder="Disabled input" disabled />
+    <Form.Label>Номер паспорта</Form.Label>
+    <Form.Control placeholder="Disabled input" disabled />
+    <Form.Label>Водительское удостоверение</Form.Label>
+    <Form.Control placeholder="Disabled input" disabled />
+    <Form.Label>Номер автомобиля</Form.Label>
+    <Form.Control placeholder="Disabled input" disabled />
+  </Form.Group>
+  
+ 
+      </Form>
+    </div>
+</>
+
+/* <>
     <div className="history">
       <History/>
     </div>
+    </>
     
-          <Card style={{ height: '18rem' }}> </Card>
-        <ListGroup className="list-group-flush">
-          <form onSubmit={submitHandler}>
-
-  <Avatar />
+    
+    <div className="personAcc">
+        <Card style={{ height: '18rem' }}> </Card>
+    </div>
+        <form onSubmit={submitHandler}>
+    </>
+        <>
+        <Avatar />
+        </>
  
             <ListGroupItem>
               <div className="mb-1">
@@ -206,16 +267,14 @@ function PersonalAcc(props) {
                 />
               </div>
             </ListGroupItem>
-            <ListGroup></ListGroup>
-            <ListGroup></ListGroup>
-            <button type="submit"> dsds</button>
-          </form>
-        </ListGroup>
-        <Card.Body>
-         
-        </Card.Body>
      
-    </div>
+            <button type="submit" class="btn btn-outline-success"> Сохранить</button>
+          </form>
+        
+      </div>
+        
+    
+</> */
   );
 }
 
