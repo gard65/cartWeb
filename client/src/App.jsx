@@ -41,7 +41,7 @@ function App() {
           <Route path="/personalAcc" element={<PersonalAcc />} />
           <Route path="/mapRouter" element={<MapRoute />} />
           <Route path='/messanger' element={<WebSock/>}/>
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
         </Routes>
       </div>
     </div>

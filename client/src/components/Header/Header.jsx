@@ -35,8 +35,10 @@ function Header() {
     <>
 
     <div className="header">
+      
       {user ? (
         <>
+        
           <div className="slash">
             <div className="avatarName">
               <div className="avatar">
@@ -61,9 +63,9 @@ function Header() {
               </div>
             </div>
           </div>
-          {/* <Link to="/role" className="nav-link fs-2">
+          <Link to="/role" className="nav-link-pop fs-1 d-box ">
               Попутка
-            </Link> */}
+            </Link>
             <div className="parent">
 
               <div className="parent__content" style={{position:'absolute', left: '32.5%', top: '3%'}} >
@@ -79,16 +81,16 @@ function Header() {
         </div>
     </div>
             <div style={{display:"flex"}}>
-          <Button variant="outline-success "  onClick={() => navigate('/personalAcc')}>
+          <Button variant="outline-success fs-1 "  onClick={() => navigate('/personalAcc')}>
            Личный кабинет
           </Button>{" "}
-          <Button variant="outline-success " onClick={() => navigate("/role")}>
+          <Button variant="outline-success fs-1" onClick={() => navigate("/role")}>
             Роль
           </Button>{" "}
             <Button
               variant="outline-success "
               onClick={logoutHandler}
-              className="nav1-link fs-4"
+              className="nav1-link fs-1"
               eventKey="link-7"
             >
               Выход

@@ -41,7 +41,7 @@
   border: none;
 }
 .form-control{
-  width: auto;
+  /* width: auto; */
   /* appearance: none; */
 } 
 /* .list-group {
