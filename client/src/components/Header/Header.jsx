@@ -63,12 +63,12 @@ function Header() {
               </div>
             </div>
           </div>
-          <Link to="/role" className="nav-link-pop fs-1 d-box ">
+          <Link to="/role" className="nav-link-pop d-box " style={{fontSize: "75px"}}>
               Попутка
             </Link>
             <div className="parent">
 
-              <div className="parent__content" style={{position:'absolute', left: '32.5%', top: '3%'}} >
+              <div className="parent__content" style={{position:'absolute', left: '37.5%', top: '6%'}} >
 
                 <div className="parent__right">
                   <div className="parent__img">

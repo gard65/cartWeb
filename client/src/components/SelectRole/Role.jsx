@@ -12,8 +12,8 @@ function selectHandler(isDriver){
   navigate('/route')
 }
   return (
-    <div className="roller">
-      <h2>Поедешь или повезешь?</h2>
+    <div className="roller text-success">
+      <h1 >Поедешь или повезешь?</h1>
       <div className="role mt-5">
         <div className="drive">
           <Button onClick={ () => selectHandler(false) }  size="lg" variant="outline-success">Пассажир?</Button>{" "}
