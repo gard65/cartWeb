@@ -10,6 +10,7 @@ export const getMapStateFromDb = () => (dispatch) => {
     center: [55.75, 37.57],
     zoom: 10,
   };
+
   const coordinatesArr = [
     [55.684758, 37.738521],
     [55.758291, 37.740831],
@@ -22,9 +23,10 @@ export const addItineraryFromDb = (pointA, pointB) => async (dispatch) => {
   const resPointA = await axios.get(
     `https://api.geotree.ru/address.php?term=${pointA}&limit=1`
   );
+
   const resPointB = await axios.get(
     `https://api.geotree.ru/address.php?term=${pointB}&limit=1`
-  );
+    );
 
   const pointStart = [
     resPointA.data[0].geo_center.lat,
@@ -50,6 +52,5 @@ export const sendDateAndTime =
   };
 export const THUNK_getRoutesFromDB = (isDriver)=> async (dispatch) => {
   const routes = await axios.get(`http://localhost:3001/route/${!isDriver}`)
-  console.log('routes from back', routes);
   dispatch(setRoutesToState(routes.data))
 }
