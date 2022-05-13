@@ -8,9 +8,8 @@ const WebSock = () => {
   const socket = useRef();
   const [connected, setConnected] = useState(false); //Отображает состояние подключения
   const [username, setUsername] = useState(""); // Устанавливаем state для пользователя
-  const currentUserId = useSelector((state) => state.user?.id);
-  const curentUserName = useSelector((state) => state.user?.name);
-  const currentChatRouteId = useSelector((state) => state.selectedRoute);
+  const currentUserId = useSelector((state) => state.user.id);
+  const curentUserName = useSelector((state) => state?.user.Name);
 
   useEffect(() => {
     connect();
@@ -48,9 +47,7 @@ const WebSock = () => {
       message: value,
       id: currentUserId,
       event: "message",
-      currentChatRouteId,
     };
-    console.log({ message });
     socket.current.send(JSON.stringify(message)); //Отправляем сообщение на сервер
     setValue("");
   };
