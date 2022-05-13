@@ -15,9 +15,6 @@ import "./personal.css"
 
 function PersonalAcc(props) {
   const user = useSelector((state) => state.user);
-
-  console.log(user);
-
   const [name, setName] = useState(user?.name);
   const [telephone, setTelephone] = useState(user?.telephone);
   const [age, setAge] = useState(user?.age);

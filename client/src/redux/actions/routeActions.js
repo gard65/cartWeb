@@ -7,3 +7,9 @@ export const setRoutesToState = (routes)=>{
   };
 }
 
+// export const addUser = (twoId) => {
+//   return {
+//     type: 'ADD_USER',
+//     payload: twoId,
+//   }
+// }

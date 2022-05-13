@@ -9,15 +9,22 @@ import {
 import { useNavigate } from "react-router-dom";
 import { postDateDepartAction } from "../../redux/actions/postDateDepartAction";
 import { postTimeDepartAction } from "../../redux/actions/postTimeDepartAction";
-import { Card, ListGroupItem, ListGroup } from "react-bootstrap";
+
+import { addMemberReducer } from "../../redux/reducers/addMemberReducer";
+import { addRouteAction } from "../../redux/actions/addMemberUserAction";
+import Main from "../Main/Main";
+// import{Main} from "./Main/Main"
 
 function AddItinerary() {
   const [valueWhence, setValueWhence] = useState();
   const [whereValue, setWhereValue] = useState();
   const [dateValue, setDateValue] = useState();
   const [timeValue, setTimeValue] = useState();
-  const { id, isDriver } = useSelector((state) => state.user);
+
+  const { id, isDriver } = useSelector((state) => state.user || {});
   const routes = useSelector((state) => state.routes);
+  const currentUserId = useSelector((state) => state.user?.id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function inputWhence(e) {
@@ -53,15 +60,29 @@ function AddItinerary() {
     );
     navigate("/mapRouter");
   }
+
+  function goToChat(id) {
+    dispatch({ type: "SELECT_ROUTE_CHAT", payload: id });
+    navigate("/messanger");
+  }
+  //  function register(route, user){
+  //   const newUser = {
+  //     route: route,
+  //     passenger:currentUserId,
+  //     driver:user
+  //   };
+  //   return dispatch(addRouteAction(newUser));
+  //  }
   useEffect(() => {
     dispatch(THUNK_getRoutesFromDB(isDriver));
-    console.log(routes);
   }, []);
   return (
     <>
+    <Main/>
       <form onSubmit={sendValue} type="submit" className="row g-3">
         <div className="col-md-6">
-          <label htmlFor="whence" className="form-label fs-4 my-5">
+          <label htmlFor="whence" className="form-label fs-4 my-2">
+
             Откуда
           </label>
           <input
@@ -74,7 +95,9 @@ function AddItinerary() {
           />
         </div>
         <div className="col-md-6">
-          <label htmlFor="where" className="form-label fs-4 my-5">
+
+          <label htmlFor="where" className="form-label fs-4 my-2">
+
             Куда
           </label>
           <input
@@ -86,13 +109,18 @@ function AddItinerary() {
             value={whereValue ? whereValue : ""}
           />
         </div>
+
+        <hr className="fs-4 mt-5" />
         <div className="col-md-6">
-          <label htmlFor="whence" className="form-label fs-4 my-5">
+          <label htmlFor="whence" className="form-label fs-4 my-2">
+
             Дата отправления
           </label>
           <input
             onChange={dateDeparture}
-            type="text"
+
+            type="date"
+
             className="form-control"
             id="whence"
             placeholder="Введите дату отправления"
@@ -100,18 +128,25 @@ function AddItinerary() {
           />
         </div>
         <div className="col-md-6">
-          <label htmlFor="where" className="form-label fs-4 my-5">
+
+          <label htmlFor="where" className="form-label fs-4 my-2">
+
             Время отправления
           </label>
           <input
             onChange={timeDeparture}
-            type="text"
+
+            type="time"
+
             className="form-control"
             id="where"
             placeholder="Введите время отправления"
             value={timeValue ? timeValue : ""}
           />
         </div>
+
+        <hr className="fs-4 mt-5" />
+
         <div className="text-center">
           <button type="submit" className="btn btn-primary mt-5">
             Подтвердить
@@ -120,37 +155,28 @@ function AddItinerary() {
       </form>
       <div>
         {routes?.map((el) => (
-          <>
-            {/* <p>
-        Откуда : {el.Route.pointA} 
-        Куда : {el.Route.pointB} 
-        Время: {el.Route.time}
-        Кто нах: {el.User.name}
-        </p> */}
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1ud02Ja8X0uAX2X2PSde0B-My8Bi-757Ug&usqp=CAU/100px180?text=Image cap"
-              />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>Откуда : {el.Route.pointA} </ListGroupItem>
-                <ListGroupItem>Куда : {el.Route.pointB}</ListGroupItem>
-                <ListGroupItem>Время: {el.Route.time}</ListGroupItem>
-                <ListGroupItem>Кто нах: {el.User.name}</ListGroupItem>
-              </ListGroup>
-              <Card.Body>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
-              </Card.Body>
-            </Card>
-          </>
+
+          <div key={el.id} className="border rounded border-warning mt-3 py-3">
+            <h3>Маршрут №{el.Route.id}</h3>
+            <p>Откуда : {el.Route.pointA}</p>
+            <p>Куда : {el.Route.pointB}</p>
+            <p>Дата отправления : {el.Route.date}</p>
+            <p>Время отправления : {el.Route.time}</p>
+            <button
+              onClick={() => goToChat(el.Route.id)}
+              type="submit"
+              className="btn btn-outline-primary mt-5"
+            >
+              Перейти в чат
+            </button>
+            {/* <button
+                  onClick={()=>register(el.Route.id, el.userId)}
+                  type="submit"
+                  className="btn btn-outline-primary mx-3 mt-5"
+                >зарегистрироваться
+                </button> */}
+          </div>
+
         ))}
       </div>
     </>

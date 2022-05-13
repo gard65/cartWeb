@@ -34,7 +34,7 @@ function SignIn() {
           }}
         >
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label> @EMAIL</Form.Label>
+            <Form.Label> Email</Form.Label>
             <Form.Control
               type="email"
               placeholder="Введите email..."

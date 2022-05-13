@@ -33,10 +33,7 @@ function Header() {
 
   return (
     <>
-    {/* <div> <Link to="/" className="nav-link fs-2">
-    Попутка
-  </Link>   */}
-  {/* </div> */}
+
     <div className="header">
       {user ? (
         <>
@@ -68,7 +65,9 @@ function Header() {
               Попутка
             </Link> */}
             <div className="parent">
+
               <div className="parent__content" style={{position:'absolute', left: '32.5%', top: '3%'}} >
+
                 <div className="parent__right">
                   <div className="parent__img">
                   <img className="earthImg" src={`${earth}`} alt="earth" />
