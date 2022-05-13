@@ -68,7 +68,9 @@ function Header() {
               Попутка
             </Link> */}
             <div className="parent">
-              <div className="parent__content" style={{position:'absolute', left: '32.5%', top: '11%'}} >
+              <div className="parent__content" 
+              // style={{position:'absolute', left: '32.5%', top: '11%'}} 
+              >
                 <div className="parent__right">
                   <div className="parent__img">
                   <img className="earthImg" src={`${earth}`} alt="earth" />

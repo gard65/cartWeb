@@ -8,13 +8,12 @@ const WebSock = () => {
   const socket = useRef();
   const [connected, setConnected] = useState(false); //Отображает состояние подключения
   const [username, setUsername] = useState(""); // Устанавливаем state для пользователя
-  const currentUserId = useSelector((state) => state.user?.id);
-  const curentUserName = useSelector((state) => state.user?.name);
-  const currentChatRouteId = useSelector((state) => state.selectedRoute);
+  const currentUserId = useSelector((state) => state.user.id);
+  const curentUserName = useSelector((state) => state?.user.name);
 
   useEffect(() => {
     connect();
-  }, []);
+  },[]);
   function connect() {
     socket.current = new WebSocket("ws://localhost:3002"); //Протокол WebSocket
     socket.current.onopen = () => {
@@ -48,9 +47,7 @@ const WebSock = () => {
       message: value,
       id: currentUserId,
       event: "message",
-      currentChatRouteId,
     };
-    console.log({ message });
     socket.current.send(JSON.stringify(message)); //Отправляем сообщение на сервер
     setValue("");
   };
@@ -85,14 +82,14 @@ const WebSock = () => {
         </div>
         <div className={styles.messages}>
           {messages.map((mess) => (
-            <div key={mess.id}>
+            <div>
               {mess.event === "connection" ? (
                 <div className={styles.connection_message}>
-                  Пользователь: {mess.username} подключился
+                  Пользователь: {mess.curentUserName} подключился
                 </div>
               ) : (
                 <div className={styles.message}>
-                  {mess.username}: {mess.message}
+                  {mess.curentUserName}: {mess.message}
                 </div>
               )}
             </div>
