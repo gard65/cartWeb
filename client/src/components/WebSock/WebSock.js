@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./style.module.css";
+import { v4 as uuidv4 } from 'uuid';
 
 const WebSock = () => {
   const [messages, setMessages] = useState([]);
@@ -88,7 +89,7 @@ const WebSock = () => {
                   Пользователь: {mess.curentUserName} подключился
                 </div>
               ) : (
-                <div className={styles.message}>
+                <div key={uuidv4()} className={styles.message}>
                   {mess.curentUserName}: {mess.message}
                 </div>
               )}
